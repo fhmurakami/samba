@@ -20,7 +20,6 @@ gem "jbuilder"
 gem "devise", "~> 4.9.4"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
-
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -43,11 +42,20 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
 
+  # RSpec testing framework [https://github.com/rspec/rspec-rails]
+  gem "rspec-rails", "~> 7.0.0"
+
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
 
-  # Shopify Ruby Linter [https://github.com/Shopify/ruby-lsp]
-  gem "ruby-lsp", require: false
+  # Factory Bot Rails [https://github.com/thoughtbot/factory_bot_rails]
+  gem "factory_bot_rails"
+
+  # Ffaker [https://github.com/ffaker/ffaker]
+  gem "ffaker"
+
+  # pry-byebug [https://github.com/deivid-rodriguez/pry-byebug]
+  gem "pry-byebug"
 end
 
 group :development do
@@ -59,4 +67,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "simplecov", require: false
+  gem "shoulda-matchers", "~> 6.0"
 end

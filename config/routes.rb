@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :user do
+    resources :admins
+  end
+
   devise_for :admins, class_name: "User::Admin"
   # Defines the root path route ("/")
   root "home#index"
