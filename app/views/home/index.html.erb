@@ -1,8 +1,22 @@
-<h1>S.A.M.</h1>
-<p>Software de Avaliação Matemática</p>
-<% if admin_signed_in? %>
-  <h1>Bem-vindo, <%= current_user.email %></h1>
-  <%= link_to "Sign out", destroy_admin_session_path, data: { turbo_method: :delete } %>
-<% else %>
-  <%= link_to "Sign in", new_admin_session_path %>
-<% end %>
+<div class="background">
+  <div class="blur">
+    <%= render "shared/header" %>
+    <div class="panel homepage">
+      <% if !admin_signed_in? %>
+        <h1><%= t "home.title" %></h1>
+        <p><%= t "home.subtitle" %></p>
+      <% else %>
+        <div class="buttons">
+          <div class="sets">
+            <button class="btn btn-large blue"><%= t "sets.new" %></button>
+            <button class="btn btn-large raspberry"><%= t "sets.show"%></button>
+          </div>
+          <div class="buttons participants">
+            <%= link_to t("participants.register"), new_user_participant_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
+            <%= link_to t("participants.show_all"), user_participants_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

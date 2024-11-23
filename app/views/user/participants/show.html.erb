@@ -1,0 +1,13 @@
+<main class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel participant">
+      <%= render @user_participant %>
+      <div class="actions">
+        <%= link_to t("participants.edit"), edit_user_participant_path(@user_participant) %>
+        <%= link_to t("participants.back"), user_participants_path %>
+        <%= button_to t("participants.delete"), @user_participant, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </div>
+</main>

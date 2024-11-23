@@ -1,0 +1,36 @@
+<%= form_with(model: user_participant) do |form| %>
+  <% if user_participant.errors.any? %>
+    <div id="error_explanation" data-turbo-cache="false">
+      <h3>
+        <%= I18n.t("errors.messages.not_saved",
+                     count: user_participant.errors.count,
+                     resource: user_participant.class.model_name.human.downcase)
+        %>
+      </h3>
+      <ul>
+        <% user_participant.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= form.label :birth_date, style: "display: block" %>
+    <%= form.date_field :birth_date %>
+  </div>
+  <div class="field">
+    <%= form.label :user_admin_id, style: "display: none" %>
+    <%= form.text_field :user_admin_id, value: current_admin.id, style: "display: none" %>
+  </div>
+  <div class="actions mt-1">
+    <%= form.submit class: "btn green" %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+<main class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel form">
+      <% content_for :title, "New participant" %>
+      <h2><%= t "participants.new"%></h2>
+      <%= render "form", user_participant: @user_participant %>
+      <br>
+      <div class="actions">
+        <%= link_to t("participants.show"), user_participants_path %>
+        <%= link_to t("home.back"), root_path %>
+      </div>
+    </div>
+  </div>
+</main>

@@ -13,16 +13,18 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/user/admins", type: :request do
-  
   # This should return the minimal set of attributes required to create a valid
   # User::Admin. As you add validations to User::Admin, be sure to
   # adjust the attributes here as well.
+  password = FFaker::Internet.password
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
-
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      email: FFaker::Internet.email,
+      first_name: FFaker::Name.first_name,
+      last_name: FFaker::Name.last_name,
+      password: password,
+      password_confirmation: password
+    }
   }
 
   describe "GET /index" do
@@ -71,6 +73,23 @@ RSpec.describe "/user/admins", type: :request do
     end
 
     context "with invalid parameters" do
+      context "with invalid email" do
+        let(:invalid_attributes) {
+          {
+            email: nil,
+            first_name: nil,
+            last_name: nil,
+            password: nil,
+            password_confirmation: nil
+          }
+        }
+
+        it "does not create a new User::Admin" do
+          expect {
+            post user_admins_url, params: { user_admin: invalid_attributes }
+          }.to change(User::Admin, :count).by(0)
+        end
+      end
       it "does not create a new User::Admin" do
         expect {
           post user_admins_url, params: { user_admin: invalid_attributes }

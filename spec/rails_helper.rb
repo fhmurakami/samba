@@ -1,6 +1,6 @@
 require "simplecov"
 SimpleCov.start "rails" do
-  add_filter ["/app/channels", "/app/helpers", "/app/jobs", "/app/mailers", "/app/models/concerns"]
+  add_filter [ "/app/channels", "/app/helpers", "/app/jobs", "/app/mailers", "/app/models/concerns" ]
 end
 puts "required simplecov"
 # This file is copied to spec/ when you run 'rails generate rspec:install'

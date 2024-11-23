@@ -56,6 +56,9 @@ group :development, :test do
 
   # pry-byebug [https://github.com/deivid-rodriguez/pry-byebug]
   gem "pry-byebug"
+
+  # htmlbeautifier [https://github.com/threedaymonk/htmlbeautifier]
+  gem "htmlbeautifier"
 end
 
 group :development do

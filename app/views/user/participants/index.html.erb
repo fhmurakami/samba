@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+<div class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <h2><%= t("activerecord.models.user/participant").pluralize %></h2>
+    <div class="participants">
+      <%= link_to t("participants.new"), new_user_participant_path, class: "btn pumpkin" %>
+      <% content_for :title, "Participants" %>
+      <div id="user_participants">
+        <% @user_participants.each do |user_participant| %>
+          <div class="card participant">
+            <%= render user_participant %>
+            <%= link_to t("participants.show"), user_participant %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to t("home.back"), root_path, class: "btn mustard btn-text-black" %>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
-  namespace :user do
-    resources :admins
+  scope "(:locale)", locale: /pt-BR|en/ do
+    namespace :user do
+      resources :participants
+    end
+    devise_for :admins, class_name: "User::Admin"
+    # Defines the root path route ("/")
+    root "home#index"
+    get "home/index"
   end
-
-  devise_for :admins, class_name: "User::Admin"
-  # Defines the root path route ("/")
-  root "home#index"
-  get "home/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

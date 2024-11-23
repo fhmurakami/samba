@@ -1,0 +1,13 @@
+<h3>
+  <%= participant.first_name %> <%= participant.last_name %>
+</h3>
+<div id="<%= dom_id participant %>">
+  <p>
+    <strong><%= "#{t 'activerecord.attributes.user/participant.birth_date'}:" %></strong>
+    <%= l(participant.birth_date) %>
+  </p>
+  <p>
+    <strong><%= "#{t('activerecord.models.user/admin')}:" %></strong>
+    <%= "#{participant.user_admin.first_name} #{participant.user_admin.last_name}" %>
+  </p>
+</div>
