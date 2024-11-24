@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :groups
   scope "(:locale)", locale: /pt-BR|en/ do
     namespace :user do
       resources :participants
