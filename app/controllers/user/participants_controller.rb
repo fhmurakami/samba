@@ -22,6 +22,7 @@ class User::ParticipantsController < ApplicationController
   # POST /user/participants or /user/participants.json
   def create
     @user_participant = User::Participant.new(user_participant_params)
+    @user_participant.groups << Group.find(group_ids)
 
     respond_to do |format|
       if @user_participant.save
@@ -36,6 +37,7 @@ class User::ParticipantsController < ApplicationController
 
   # PATCH/PUT /user/participants/1 or /user/participants/1.json
   def update
+    @user_participant.groups << Group.find(group_ids)
     respond_to do |format|
       if @user_participant.update(user_participant_params)
         format.html { redirect_to @user_participant, notice: "Participant was successfully updated." }
@@ -66,5 +68,9 @@ class User::ParticipantsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def user_participant_params
     params.require(:user_participant).permit(:first_name, :last_name, :birth_date, :user_admin_id)
+  end
+
+  def group_ids
+    @group_ids ||= params[:user_participant][:group_ids].compact_blank
   end
 end

@@ -7,7 +7,29 @@
     <%= l(participant.birth_date) %>
   </p>
   <p>
-    <strong><%= "#{t('activerecord.models.user/admin')}:" %></strong>
-    <%= "#{participant.user_admin.first_name} #{participant.user_admin.last_name}" %>
+    <strong><%= "#{t('activerecord.models.group').pluralize}:" %></strong>
+    <table>
+      <thead>
+        <tr>
+          <th><%= t "helpers.label.group.id" %></th>
+          <th colspan="2"><%= t "helpers.label.group.name" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% participant.groups.each do |group| %>
+          <tr>
+            <td class="id-cell">
+              <%= group.id %>
+            </td>
+            <td class="name-cell">
+              <%= group.name %>
+            </td>
+            <td class="link-cell">
+              <%= link_to t("groups.show"), group, class: "text-xs" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </p>
 </div>

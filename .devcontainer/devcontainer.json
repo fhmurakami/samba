@@ -38,7 +38,8 @@
         "esbenp.prettier-vscode",
         "ms-vscode.live-server",
         "setobiralo.erb-commenter",
-        "vortizhe.simple-ruby-erb"
+        "vortizhe.simple-ruby-erb",
+        "eamodio.gitlens"
       ]
     }
   }

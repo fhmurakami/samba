@@ -1,10 +1,13 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @group %>
-
-<div>
-  <%= link_to "Edit this group", edit_group_path(@group) %> |
-  <%= link_to "Back to groups", groups_path %>
-
-  <%= button_to "Destroy this group", @group, method: :delete %>
-</div>
+<main class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel group">
+      <%= render @group %>
+      <div class="actions">
+        <%= link_to t("groups.edit"), edit_group_path(@group) %>
+        <%= link_to t("groups.back"), groups_path %>
+        <%= button_to t("groups.delete"), @group, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </div>
+</main>

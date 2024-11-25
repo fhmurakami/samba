@@ -1,4 +1,4 @@
-@import url(https://fonts.bunny.net/css?family=coiny:400|coming-soon:400|gamja-flower:400|gochi-hand:400|marck-script:400|neucha:400|pacifico:400|patrick-hand:400);
+@import url(https://fonts.bunny.net/css?family=coiny:400);
 
 :root {
   --black: #2e2f30;
@@ -188,40 +188,6 @@ nav {
   -webkit-text-stroke: 2px var(--white);
 }
 
-.btn {
-  width: 100%;
-  text-align: center;
-  font-size: 1rem;
-  color: var(--white);
-
-  border: 2px solid var(--black);
-  border-radius: 2vmin;
-
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-}
-
-.btn-small {
-  border: 1px solid var(--black);
-  padding: 0.25rem 1rem;
-  border-radius: 1.5vmin;
-}
-
-.btn-large {
-  font-size: 1.5rem;
-  border: 3px solid var(--black);
-  margin-top: 2rem;
-  padding: 1rem 2rem;
-}
-
-.btn-header {
-  margin: 0;
-}
-
-.btn-text-black {
-  color: var(--black);
-}
-
 .buttons {
   width: 80%;
   display: flex;
@@ -231,11 +197,9 @@ nav {
   font-size: 1.2rem;
 }
 
-.buttons .sets {
-  width: 100%;
-}
-
-.buttons .participants {
+.buttons .sets,
+.buttons .participants,
+.buttons .groups {
   width: 100%;
 }
 
@@ -288,7 +252,8 @@ nav {
   gap: 5vmin;
 }
 
-.participants {
+.participants,
+.groups {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -296,7 +261,8 @@ nav {
   /* gap: 5vmin; */
 }
 
-.participant h3 {
+.participant h3,
+.group h3 {
   color: var(--pumpkin);
   -webkit-text-stroke: 1px var(--black);
   text-align: center;
@@ -304,7 +270,8 @@ nav {
   justify-self: flex-start;
 }
 
-.participant p {
+.participant p,
+.group p {
   -webkit-text-stroke: unset;
   font-size: 1.5rem;
 }
@@ -317,7 +284,14 @@ nav {
   gap: 2vmin;
 }
 
-.card.participant {
+#groups {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2vmin;
+}
+
+.card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -327,19 +301,13 @@ nav {
   padding: 2.5vmin;
 }
 
-.card.participant h3 {
+.card h3 {
   font-size: 2rem;
 }
 
-.card.participant p {
+.card p {
   font-size: 1.25rem;
   color: var(--raspberry);
-}
-
-.participants a {
-  text-align: center;
-  font-size: 1.5rem;
-  margin: 2vmin auto;
 }
 
 .card a {
@@ -351,18 +319,36 @@ nav {
   color: var(--blue);
 }
 
+.participants a,
+.groups a {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 2vmin auto;
+}
+
 .form form {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
-.form .field input {
+.form .field input,
+.form .field select {
   display: block;
+  width: 100%;
 }
 
 .form .field input[type="checkbox"] {
   display: inline-block;
+  width: fit-content;
+}
+
+.form .field select[multiple] {
+  height: 6rem;
+}
+
+.form .field select[multiple] option {
+  white-space: normal;
 }
 
 .actions {
@@ -380,10 +366,6 @@ nav {
 
 .actions a:hover {
   color: var(--blue);
-}
-
-.actions a.btn:hover {
-  color: var(--white);
 }
 
 .actions input {
@@ -406,4 +388,71 @@ nav {
 
 a.forgot-password:hover {
   color: var(--raspberry);
+}
+
+.btn {
+  width: 100%;
+  text-align: center;
+  color: var(--white);
+
+  border: 2px solid var(--black);
+  border-radius: 2vmin;
+
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+}
+
+.btn-small {
+  font-size: 1rem;
+  border: 1px solid var(--black);
+  padding: 0.25rem 1rem;
+  border-radius: 1.5vmin;
+}
+
+.btn-large {
+  font-size: 1.5rem;
+  border: 3px solid var(--black);
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+}
+
+.btn-header {
+  margin: 0;
+}
+
+.btn-text-black {
+  color: var(--black);
+}
+
+a.btn:hover {
+  color: var(--white);
+}
+
+a.text-xs {
+  font-size: 1rem;
+}
+
+a.text-s {
+  font-size: 1.2rem;
+}
+
+a.text-normal {
+  font-size: 1.5rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid var(--black);
+  padding: 0.5rem;
+}
+
+td.id-cell,
+td.name-cell,
+td.link-cell {
+  text-align: center;
 }

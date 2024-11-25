@@ -27,6 +27,16 @@
     <%= form.date_field :birth_date %>
   </div>
   <div class="field">
+    <%#= form.label :group_id %>
+    <%#= form.select :group_id, current_admin.groups.collect { |g| [ g.name, g.id ] } %>
+    <%= form.label :group_ids %>
+    <%=
+      form.select :group_ids,
+      options_from_collection_for_select(Group.all, :id, :name),
+      multiple: true
+    %>
+  </div>
+  <div class="field">
     <%= form.label :user_admin_id, style: "display: none" %>
     <%= form.text_field :user_admin_id, value: current_admin.id, style: "display: none" %>
   </div>

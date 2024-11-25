@@ -1,11 +1,14 @@
-<% content_for :title, "New group" %>
-
-<h1>New group</h1>
-
-<%= render "form", group: @group %>
-
-<br>
-
-<div>
-  <%= link_to "Back to groups", groups_path %>
-</div>
+<main class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel form">
+      <% content_for :title, "New group" %>
+      <h2><%= t "groups.new" %></h2>
+      <%= render "form", group: @group %>
+      <div class="actions">
+        <%= link_to t("groups.show_all"), groups_path %>
+        <%= link_to t("home.back"), root_path %>
+      </div>
+    </div>
+  </div>
+</main>

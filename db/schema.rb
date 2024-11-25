@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_24_154530) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_25_131011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_24_154530) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_admin_id"], name: "index_groups_on_user_admin_id"
+  end
+
+  create_table "groups_user_participants", id: false, force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_participant_id", null: false
+    t.index ["group_id", "user_participant_id"], name: "idx_on_group_id_user_participant_id_f27666c370"
+    t.index ["user_participant_id", "group_id"], name: "idx_on_user_participant_id_group_id_cfaf1742ea"
   end
 
   create_table "user_admins", force: :cascade do |t|
@@ -42,10 +49,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_24_154530) do
     t.date "birth_date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "group_id", null: false
-    t.index ["group_id"], name: "index_user_participants_on_group_id"
+    t.bigint "user_admin_id", null: false
+    t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
   add_foreign_key "groups", "user_admins"
-  add_foreign_key "user_participants", "groups"
+  add_foreign_key "user_participants", "user_admins"
 end

@@ -11,10 +11,14 @@
             <button class="btn btn-large blue"><%= t "sets.new" %></button>
             <button class="btn btn-large raspberry"><%= t "sets.show"%></button>
           </div>
-          <div class="buttons participants">
-            <%= link_to t("participants.register"), new_user_participant_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
-            <%= link_to t("participants.show_all"), user_participants_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
+          <div class="buttons groups">
+            <%= link_to t("groups.new"), new_group_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
+            <%= link_to t("groups.show_all"), groups_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
           </div>
+          <!--<div class="buttons participants">-->
+          <%#= link_to t("participants.register"), new_user_participant_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
+          <%#= link_to t("participants.show_all"), user_participants_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
+          <!--          </div>-->
         </div>
       <% end %>
     </div>

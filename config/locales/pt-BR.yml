@@ -17,8 +17,22 @@ pt-BR:
     register: "Cadastrar participante"
     show: "Ver participante"
     show_all: "Ver todos os participantes"
+  groups:
+    back: "Voltar para grupos"
+    delete: "Excluir grupo"
+    edit: "Editar grupo"
+    editing: "Editando grupo"
+    new: "Novo grupo"
+    select: "Selecionar grupo"
+    show: "Ver grupo"
+    show_all: "Ver todos os grupos"
+    created: "O grupo foi criado com sucesso."
+    updated: "O grupo foi atualizado com sucesso."
+    destroyed: "O grupo foi excluido com sucesso."
   activerecord:
     attributes:
+      group:
+        name: "Nome"
       user/admin:
         first_name: "Nome"
         last_name: "Sobrenome"
@@ -30,7 +44,9 @@ pt-BR:
         first_name: "Nome"
         last_name: "Sobrenome"
         birth_date: "Data de nascimento"
+        group_id: "Grupo"
     models:
+      group: "Grupo"
       user/admin: "Admin"
       user/participant: "Participante"
     errors:
@@ -185,7 +201,12 @@ pt-BR:
       user_participant:
         first_name: "Nome"
         last_name: "Sobrenome"
+        full_name: "Nome completo"
         birth_date: "Data de nascimento"
+        group_id: "Grupo"
+        group_ids: "Grupos"
+      group:
+        name: "Nome"
     select:
       prompt: Por favor selecione
     submit:

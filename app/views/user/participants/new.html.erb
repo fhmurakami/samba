@@ -3,8 +3,8 @@
     <%= render 'shared/header' %>
     <div class="panel form">
       <% content_for :title, "New participant" %>
-      <h2><%= t "participants.new"%></h2>
-      <%= render "form", user_participant: @user_participant %>
+      <h2><%= t "participants.new" %></h2>
+      <%= render "form", user_participant: @user_participant, group_id: @group_id %>
       <br>
       <div class="actions">
         <%= link_to t("participants.show"), user_participants_path %>
