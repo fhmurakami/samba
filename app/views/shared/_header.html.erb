@@ -1,16 +1,25 @@
 <header>
   <nav>
-    <% if I18n.locale == :"pt-BR" %>
-      <%= link_to "🇬🇧", { controller: controller_name, action: action_name, locale: :en }, class: "center-vh flag" %>
-    <% else %>
-      <%= link_to "🇧🇷", { controller: controller_name, action: action_name, locale: :"pt-BR" }, class: "center-vh flag" %>
-    <% end %>
-    <% if admin_signed_in? %>
-      <span class="center-vh username"><%= current_admin.first_name %> <%= current_admin.last_name %></span>
-      <%= button_to t("devise.sessions.sign_out"), destroy_admin_session_path, class: "btn btn-small btn-header crimson", method: :delete, data: { turbo_method: :delete } %>
-    <% else %>
-      <%= button_to t("devise.sessions.sign_in"), new_admin_session_path, class: "btn btn-small btn-header green", method: :get, data: { turbo_method: :get } %>
-    <% end %>
+    <div class="nav-links">
+      <%= link_to t("home.homepage"), root_path, class: "home" %>
+    </div>
+    <div class="right">
+      <div class="lang">
+        <% if I18n.locale == :"pt-BR" %>
+          <%= link_to "🇬🇧", { controller: controller_name, action: action_name, locale: :en }, class: "center-vh flag" %>
+        <% else %>
+          <%= link_to "🇧🇷", { controller: controller_name, action: action_name, locale: :"pt-BR" }, class: "center-vh flag" %>
+        <% end %>
+      </div>
+      <div class="user">
+        <% if admin_signed_in? %>
+          <span class="center-vh username"><%= current_admin.first_name %> <%= current_admin.last_name %></span>
+          <%= button_to t("devise.sessions.sign_out"), destroy_admin_session_path, class: "btn btn-small btn-header crimson", method: :delete, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= button_to t("devise.sessions.sign_in"), new_admin_session_path, class: "btn btn-small btn-header green", method: :get, data: { turbo_method: :get } %>
+        <% end %>
+      </div>
+    </div>
   </nav>
   <div class="messages">
     <p class="notice"><%= notice %></p>
