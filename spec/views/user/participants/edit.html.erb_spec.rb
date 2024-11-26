@@ -17,7 +17,6 @@ RSpec.describe "user/participants/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", user_participant_path(user_participant), "post" do
-
       assert_select "input[name=?]", "user_participant[first_name]"
 
       assert_select "input[name=?]", "user_participant[last_name]"
