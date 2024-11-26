@@ -1,0 +1,32 @@
+<%= form_with(model: collection) do |form| %>
+  <% if collection.errors.any? %>
+    <div id="error_explanation" data-turbo-cache="false">
+      <h3>
+        <%= I18n.t("errors.messages.not_saved",
+                     count: collection.errors.count,
+                     resource: collection.class.model_name.human.downcase)
+        %>
+      </h3>
+      <ul>
+        <% collection.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :equations_quantity, style: "display: block" %>
+    <%= form.number_field :equations_quantity, min: 1 %>
+  </div>
+  <div class="field" style="display: none;">
+    <%= form.label :user_admin_id %>
+    <%= form.text_field :user_admin_id, value: current_admin.id %>
+  </div>
+  <div class="actions mt-1">
+    <%= form.submit class: "btn green" %>
+  </div>
+<% end %>

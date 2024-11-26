@@ -1,0 +1,14 @@
+<main class="background">
+  <% content_for :title, t("collections.editing") %>
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel form">
+      <h2><%= t("collections.new") %></h2>
+      <%= render "form", collection: @collection %>
+      <div class="actions">
+        <%= link_to t("collections.show"), @collection %>
+        <%= link_to t("collections.back"), collections_path %>
+      </div>
+    </div>
+  </div>
+</main>

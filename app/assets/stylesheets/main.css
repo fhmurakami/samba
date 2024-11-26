@@ -229,12 +229,14 @@ nav div.user {
   justify-content: space-between;
   align-items: center;
   font-size: 1.2rem;
+  gap: 5vmin;
 }
 
-.buttons .sets,
+.buttons .collections,
 .buttons .participants,
 .buttons .groups {
   width: 100%;
+  gap: 2.5vmin;
 }
 
 .panel {
@@ -255,11 +257,18 @@ nav div.user {
   font-size: 1.2rem;
 }
 
-.panel.homepage {
+.panel.title-screen {
   min-width: 60vw;
   max-width: 80vw;
   height: 50vh;
   justify-content: center;
+}
+
+.panel.homepage {
+  min-width: 70vw;
+  /* max-width: 80vw; */
+  /* min-height: 50vh; */
+  /* justify-content: center; */
 }
 
 .panel h1 {
@@ -287,7 +296,8 @@ nav div.user {
 }
 
 .participants,
-.groups {
+.groups,
+.collections {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -296,7 +306,8 @@ nav div.user {
 }
 
 .participant h3,
-.group h3 {
+.group h3,
+.collection h3 {
   color: var(--pumpkin);
   -webkit-text-stroke: 1px var(--black);
   text-align: center;
@@ -305,7 +316,8 @@ nav div.user {
 }
 
 .participant p,
-.group p {
+.group p,
+.collection p {
   -webkit-text-stroke: unset;
   font-size: 1.5rem;
 }
@@ -318,7 +330,8 @@ nav div.user {
   gap: 2vmin;
 }
 
-#groups {
+#groups,
+#collections {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -354,7 +367,8 @@ nav div.user {
 }
 
 .participants a,
-.groups a {
+.groups a,
+.collections a {
   text-align: center;
   font-size: 1.5rem;
   margin: 2vmin auto;
@@ -447,7 +461,8 @@ a.forgot-password:hover {
 .btn-large {
   font-size: 1.5rem;
   border: 3px solid var(--black);
-  margin-top: 2rem;
+  margin: unset;
+  /* margin-top: 2rem; */
   padding: 1rem 2rem;
 }
 
@@ -461,6 +476,10 @@ a.forgot-password:hover {
 
 a.btn:hover {
   color: var(--white);
+}
+
+a.btn.btn-large {
+  margin: unset;
 }
 
 a.text-xs {

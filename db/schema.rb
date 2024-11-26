@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_25_131011) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_25_233128) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.integer "equations_quantity"
+    t.bigint "user_admin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_admin_id"], name: "index_collections_on_user_admin_id"
+  end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
@@ -53,6 +62,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_25_131011) do
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
+  add_foreign_key "collections", "user_admins"
   add_foreign_key "groups", "user_admins"
   add_foreign_key "user_participants", "user_admins"
 end
