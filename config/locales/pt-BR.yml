@@ -1,6 +1,7 @@
 ---
 pt-BR:
   home:
+    homepage: "Home"
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
