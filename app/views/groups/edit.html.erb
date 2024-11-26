@@ -1,8 +1,8 @@
 <main class="background">
+  <% content_for :title, t("groups.editing") %>
   <div class="blur">
     <%= render 'shared/header' %>
     <div class="panel form">
-      <% content_for :title, "Editing group" %>
       <h2><%= t "groups.editing" %></h2>
       <%= render "form", group: @group %>
       <div class="actions">

@@ -1,26 +1,28 @@
 <div class="background">
   <div class="blur">
     <%= render "shared/header" %>
-    <div class="panel homepage">
-      <% if !admin_signed_in? %>
+    <% if !admin_signed_in? %>
+      <div class="panel title-screen">
         <h1><%= t "home.title" %></h1>
         <p><%= t "home.subtitle" %></p>
-      <% else %>
+      </div>
+    <% else %>
+      <div class="panel homepage">
         <div class="buttons">
-          <div class="sets">
-            <button class="btn btn-large blue"><%= t "sets.new" %></button>
-            <button class="btn btn-large raspberry"><%= t "sets.show"%></button>
+          <div class="buttons collections">
+            <%= link_to t("collections.new"), new_collection_path, class: "btn btn-large blue" %>
+            <%= link_to t("collections.show_all"), collections_path, class: "btn btn-large raspberry" %>
           </div>
           <div class="buttons groups">
             <%= link_to t("groups.new"), new_group_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
             <%= link_to t("groups.show_all"), groups_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
           </div>
           <!--<div class="buttons participants">-->
-          <%#= link_to t("participants.register"), new_user_participant_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
-          <%#= link_to t("participants.show_all"), user_participants_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
-          <!--          </div>-->
+          <%#= link_to t("participants.register"), new_user_participant_path, class: "btn btn-large green", method: :get, data: { turbo_method: :get } %>
+          <%#= link_to t("participants.show_all"), user_participants_path, class: "btn btn-large crimson", method: :get, data: { turbo_method: :get } %>
+          <!--</div>-->
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>

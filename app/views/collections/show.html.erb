@@ -1,0 +1,13 @@
+<main class="background">
+  <div class="blur">
+    <%= render 'shared/header' %>
+    <div class="panel collection">
+      <%= render @collection %>
+      <div class="actions">
+        <%= link_to t("collections.edit"), edit_collection_path(@collection) %>
+        <%= link_to t("collections.back"), collections_path %>
+        <%= button_to t("collections.delete"), @collection, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </div>
+</main>

@@ -5,10 +5,15 @@ pt-BR:
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
-  sets:
+  collections:
+    back: "Voltar para conjuntos"
+    delete: "Excluir conjunto"
+    edit: "Editar conjunto"
+    editing: "Editando conjunto"
     new: "Novo conjunto"
     register: "Cadastrar novo conjunto"
-    show: "Utilizar conjunto salvo"
+    show: "Ver conjunto"
+    show_all: "Ver todos os conjuntos"
   participants:
     back: "Voltar para participantes"
     delete: "Excluir participante"
@@ -32,6 +37,9 @@ pt-BR:
     destroyed: "O grupo foi excluido com sucesso."
   activerecord:
     attributes:
+      collection:
+        name: "Nome"
+        equations_quantity: "Quantidade de equações"
       group:
         name: "Nome"
       user/admin:
@@ -47,6 +55,7 @@ pt-BR:
         birth_date: "Data de nascimento"
         group_id: "Grupo"
     models:
+      collection: "Conjunto"
       group: "Grupo"
       user/admin: "Admin"
       user/participant: "Participante"
@@ -196,9 +205,14 @@ pt-BR:
         other: "Não foi possível gravar %{model}: %{count} erros"
   helpers:
     label:
+      collection:
+        name: "Nome"
+        equations_quantity: "Quantidade de equações"
+      group:
+        name: "Nome"
       user_admin:
-        # first_name: "Nome"
-        # last_name: "Sobrenome"
+        first_name: "Nome"
+        last_name: "Sobrenome"
       user_participant:
         first_name: "Nome"
         last_name: "Sobrenome"
@@ -206,8 +220,6 @@ pt-BR:
         birth_date: "Data de nascimento"
         group_id: "Grupo"
         group_ids: "Grupos"
-      group:
-        name: "Nome"
     select:
       prompt: Por favor selecione
     submit:

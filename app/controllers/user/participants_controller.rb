@@ -22,6 +22,7 @@ class User::ParticipantsController < ApplicationController
   # POST /user/participants or /user/participants.json
   def create
     @user_participant = User::Participant.new(user_participant_params)
+    # TODO: Rever lógica para adicionar apenas novos grupos e remover dos antigos
     @user_participant.groups << Group.find(group_ids)
 
     respond_to do |format|
@@ -37,6 +38,7 @@ class User::ParticipantsController < ApplicationController
 
   # PATCH/PUT /user/participants/1 or /user/participants/1.json
   def update
+    # TODO: Rever lógica para adicionar apenas novos grupos e remover dos antigos
     @user_participant.groups << Group.find(group_ids)
     respond_to do |format|
       if @user_participant.update(user_participant_params)
