@@ -5,21 +5,21 @@
   <table>
     <thead>
       <tr>
-        <th colspan="4">
+        <th colspan="5">
           <strong>
             <%= t("activerecord.models.user/participant").pluralize %>
           </strong>
         </th>
       </tr>
       <tr>
-        <th><%= t "helpers.label.user_participant.id" %></th>
-        <th><%= t "helpers.label.user_participant.full_name" %></th>
-        <th><%= t "helpers.label.user_participant.birth_date" %></th>
-        <th><%= t "participants.show" %></th>
+        <th><%= t "helpers.label.participant.id" %></th>
+        <th><%= t "helpers.label.participant.full_name" %></th>
+        <th><%= t "helpers.label.participant.birth_date" %></th>
+        <th colspan="2"><%= t "helpers.actions" %></th>
       </tr>
     </thead>
     <tbody>
-      <% group.user_participants.each do |participant| %>
+      <% group.participants.each do |participant| %>
         <tr>
           <td>
             <%= participant.id %>
@@ -33,13 +33,22 @@
           <td>
             <%= link_to t("participants.show"), participant, class: "text-xs" %>
           </td>
+          <td>
+            <%=
+              button_to t("participants.remove_from_group"),
+              remove_participant_group_path(participant, group),
+              class: "btn btn-small crimson",
+              method: :patch,
+              data: { turbo_method: :patch, confirm: t("participants.remove_from_group?") }
+            %>
+          </td>
         </tr>
       <% end %>
     </tbody>
     <tfoot>
       <tr>
-        <th colspan="4">
-          <%= link_to t("participants.new"), new_user_participant_path(group_id: group.id), class: "btn btn-small text-s pumpkin" %>
+        <th colspan="5">
+          <%= link_to t("participants.new"), new_participant_path(group_id: group.id), class: "btn btn-small text-s pumpkin" %>
         </th>
       </tr>
     </tfoot>

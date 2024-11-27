@@ -1,5 +1,5 @@
 class User::ParticipantsController < ApplicationController
-  before_action :set_user_participant, only: %i[ show edit update destroy ]
+  before_action :set_participant, only: %i[ show edit update destroy ]
 
   # GET /user/participants or /user/participants.json
   def index
@@ -21,9 +21,8 @@ class User::ParticipantsController < ApplicationController
 
   # POST /user/participants or /user/participants.json
   def create
-    @user_participant = User::Participant.new(user_participant_params)
-    # TODO: Rever lógica para adicionar apenas novos grupos e remover dos antigos
-    @user_participant.groups << Group.find(group_ids)
+    @user_participant = User::Participant.new(participant_params)
+    add_participant_to_groups(group_ids)
 
     respond_to do |format|
       if @user_participant.save
@@ -38,10 +37,9 @@ class User::ParticipantsController < ApplicationController
 
   # PATCH/PUT /user/participants/1 or /user/participants/1.json
   def update
-    # TODO: Rever lógica para adicionar apenas novos grupos e remover dos antigos
-    @user_participant.groups << Group.find(group_ids)
+    add_participant_to_groups(group_ids)
     respond_to do |format|
-      if @user_participant.update(user_participant_params)
+      if @user_participant.update(participant_params)
         format.html { redirect_to @user_participant, notice: "Participant was successfully updated." }
         format.json { render :show, status: :ok, location: @user_participant }
       else
@@ -56,23 +54,28 @@ class User::ParticipantsController < ApplicationController
     @user_participant.destroy!
 
     respond_to do |format|
-      format.html { redirect_to user_participants_path, status: :see_other, notice: "Participant was successfully destroyed." }
+      format.html { redirect_to participants_path, status: :see_other, notice: "Participant was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_user_participant
+  def set_participant
     @user_participant = User::Participant.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
-  def user_participant_params
-    params.require(:user_participant).permit(:first_name, :last_name, :birth_date, :user_admin_id)
+  def participant_params
+    params.require(:participant).permit(:first_name, :last_name, :birth_date, :user_admin_id)
   end
 
   def group_ids
-    @group_ids ||= params[:user_participant][:group_ids].compact_blank
+    @group_ids ||= params[:participant]&.delete(:group_ids)&.compact_blank
+  end
+
+  def add_participant_to_groups(group_ids)
+    participant_groups = @user_participant.groups
+    @user_participant.groups = Group.where(id: group_ids) unless participant_groups.ids.include?(group_ids)
   end
 end

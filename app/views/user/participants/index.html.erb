@@ -4,12 +4,12 @@
     <%= render 'shared/header' %>
     <h2><%= t("activerecord.models.user/participant").pluralize %></h2>
     <div class="participants">
-      <%= link_to t("participants.new"), new_user_participant_path, class: "btn pumpkin" %>
-      <div id="user_participants">
-        <% @user_participants.each do |user_participant| %>
+      <%= link_to t("participants.new"), new_participant_path, class: "btn pumpkin" %>
+      <div id="participants">
+        <% @user_participants.each do |participant| %>
           <div class="card participant">
-            <%= render user_participant %>
-            <%= link_to t("participants.show"), user_participant %>
+            <%= render participant %>
+            <%= link_to t("participants.show"), participant %>
           </div>
         <% end %>
       </div>

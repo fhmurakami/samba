@@ -19,6 +19,8 @@ pt-BR:
     delete: "Excluir participante"
     edit: "Editar participante"
     editing: "Editando participante"
+    remove_from_group: "Remover do grupo"
+    remove_from_group?: "Realmente deseja remover o participante do grupo?"
     new: "Novo participante"
     register: "Cadastrar participante"
     show: "Ver participante"
@@ -204,6 +206,7 @@ pt-BR:
         one: "Não foi possível gravar %{model}: %{count} erro"
         other: "Não foi possível gravar %{model}: %{count} erros"
   helpers:
+    actions: "Ações"
     label:
       collection:
         name: "Nome"
@@ -213,7 +216,7 @@ pt-BR:
       user_admin:
         first_name: "Nome"
         last_name: "Sobrenome"
-      user_participant:
+      participant:
         first_name: "Nome"
         last_name: "Sobrenome"
         full_name: "Nome completo"
