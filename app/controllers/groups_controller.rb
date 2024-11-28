@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: %i[ show edit update destroy ]
+  before_action :set_group, only: %i[ show edit update destroy remove_participant ]
 
   # GET /groups or /groups.json
   def index
@@ -47,6 +47,11 @@ class GroupsController < ApplicationController
     end
   end
 
+  def remove_participant
+    @group.remove_participant(participant)
+    redirect_to @group
+  end
+
   # DELETE /groups/1 or /groups/1.json
   def destroy
     @group.destroy!
@@ -60,7 +65,11 @@ class GroupsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_group
-    @group = Group.find(params[:id])
+    @group ||= Group.find(params[:id])
+  end
+
+  def participant
+    @participant ||= User::Participant.find(params[:participant_id])
   end
 
   # Only allow a list of trusted parameters through.

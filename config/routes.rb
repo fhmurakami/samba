@@ -2,10 +2,20 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /pt-BR|en/ do
     resources :collections
-    resources :groups
-    namespace :user do
-      resources :participants
+    # resources :groups do
+    #   resources :participants, module: :user do
+    #     patch "remove", to: "groups#remove_participant", as: :remove
+    #   end
+    # end
+    resources :participants, module: :user, only: [] do
+      resources :groups, only: [] do
+        member do
+          patch "remove", to: "/groups#remove_participant", as: :remove
+        end
+      end
     end
+    resources :groups
+    resources :participants, module: :user
     devise_for :admins, class_name: "User::Admin"
     # Defines the root path route ("/")
     root "home#index"
