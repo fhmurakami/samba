@@ -1,0 +1,45 @@
+<h3>
+  <%= "#{ t('activerecord.models.equation') } #{ equation.id }" %>
+</h3>
+<div id="<%= dom_id equation %>" class="attributes">
+  <div class="equation attribute">
+    <p>
+      <strong><%= t "helpers.label.equation.position_a" %>:</strong>
+      <%= equation.position_a %>
+    </p>
+  </div>
+  <div class="equation attribute">
+    <p>
+      <strong><%= t "helpers.label.equation.position_b" %>:</strong>
+      <%= equation.position_b %>
+    </p>
+  </div>
+  <div class="equation attribute">
+    <p>
+      <strong><%= t "helpers.label.equation.position_c" %>:</strong>
+      <%= equation.position_c %>
+    </p>
+  </div>
+  <div class="equation attribute">
+    <p>
+      <strong><%= t "helpers.label.equation.operator" %>:</strong>
+      <%= equation.operator %>
+    </p>
+  </div>
+  <div class="equation attribute">
+    <p>
+      <strong><%= t "helpers.label.equation.unknown_position" %>:</strong>
+      <%= equation.unknown_position.upcase %>
+    </p>
+  </div>
+  <div class="equation attribute">
+    <p><strong><%= t "helpers.label.equation.collection_ids" %>:</strong></p>
+    <% equation.collections.each do |collection| %>
+      <ul>
+        <li>
+          <p><%= collection.name %></p>
+        </li>
+      </ul>
+    <% end %>
+  </div>
+</div>

@@ -1,8 +1,8 @@
+<% content_for :title, "Editing participant" %>
 <main class="background">
   <div class="blur">
     <%= render 'shared/header' %>
     <div class="panel form">
-      <% content_for :title, "Editing participant" %>
       <h2><%= t "participants.editing" %></h2>
       <%= render "form", user_participant: @user_participant %>
       <div class="actions">

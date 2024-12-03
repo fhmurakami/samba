@@ -2,8 +2,8 @@
   <% content_for :title, t("groups.new") %>
   <div class="blur">
     <%= render 'shared/header' %>
+    <h2><%= t "groups.new" %></h2>
     <div class="panel form">
-      <h2><%= t "groups.new" %></h2>
       <%= render "form", group: @group %>
       <div class="actions">
         <%= link_to t("groups.show_all"), groups_path %>

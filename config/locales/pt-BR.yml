@@ -14,6 +14,25 @@ pt-BR:
     register: "Cadastrar novo conjunto"
     show: "Ver conjunto"
     show_all: "Ver todos os conjuntos"
+    created: "O conjunto foi criado com sucesso."
+    updated: "O conjunto foi atualizado com sucesso."
+    destroyed: "O conjunto foi excluído com sucesso."
+    errors:
+      equations_limit: "não pode ter mais do que %{equations_limit} equações"
+  equations:
+    back: "Voltar para equações"
+    delete: "Excluir equação"
+    edit: "Editar equação"
+    editing: "Editando equação"
+    remove: "Remover do conjunto"
+    remove?: "Realmente deseja remover a equação do conjunto?"
+    new: "Nova equação"
+    register: "Cadastrar equação"
+    show: "Ver equação"
+    show_all: "Ver todas as equações"
+    created: "A equação foi criada com sucesso."
+    updated: "A equação foi atualizada com sucesso."
+    destroyed: "A equação foi excluída com sucesso."
   participants:
     back: "Voltar para participantes"
     delete: "Excluir participante"
@@ -25,6 +44,9 @@ pt-BR:
     register: "Cadastrar participante"
     show: "Ver participante"
     show_all: "Ver todos os participantes"
+    created: "O participante foi criado com sucesso."
+    updated: "O participante foi atualizado com sucesso."
+    destroyed: "O participante foi excluído com sucesso."
   groups:
     back: "Voltar para grupos"
     delete: "Excluir grupo"
@@ -36,12 +58,19 @@ pt-BR:
     show_all: "Ver todos os grupos"
     created: "O grupo foi criado com sucesso."
     updated: "O grupo foi atualizado com sucesso."
-    destroyed: "O grupo foi excluido com sucesso."
+    destroyed: "O grupo foi excluído com sucesso."
   activerecord:
     attributes:
       collection:
         name: "Nome"
         equations_quantity: "Quantidade de equações"
+      equation:
+        position_a: "Posição A"
+        position_b: "Posição B"
+        position_c: "Posição C"
+        operator: "Operador"
+        unknown_position: "Posição incógnita"
+        collection_id: "Conjunto"
       group:
         name: "Nome"
       user/admin:
@@ -58,6 +87,7 @@ pt-BR:
         group_id: "Grupo"
     models:
       collection: "Conjunto"
+      equation: "Equação"
       group: "Grupo"
       user/admin: "Admin"
       user/participant: "Participante"
@@ -211,6 +241,14 @@ pt-BR:
       collection:
         name: "Nome"
         equations_quantity: "Quantidade de equações"
+      equation:
+        collection_id: "Conjunto"
+        collection_ids: "Conjuntos"
+        operator: "Operador"
+        position_a: "Posição A"
+        position_b: "Posição B"
+        position_c: "Posição C"
+        unknown_position: "Posição incógnita"
       group:
         name: "Nome"
       user_admin:

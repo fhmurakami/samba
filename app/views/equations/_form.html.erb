@@ -1,0 +1,52 @@
+<%= form_with(model: equation) do |form| %>
+  <% if equation.errors.any? %>
+    <div id="error_explanation" data-turbo-cache="false">
+      <h3>
+        <%= I18n.t("errors.messages.not_saved",
+                    count: equation.errors.count,
+                    resource: equation.class.model_name.human.downcase)
+        %>
+      </h3>
+      <ul>
+        <% equation.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :position_a, style: "display: block" %>
+    <%= form.number_field :position_a %>
+  </div>
+  <div class="field">
+    <%= form.label :position_b, style: "display: block" %>
+    <%= form.number_field :position_b %>
+  </div>
+  <div class="field">
+    <%= form.label :position_c, style: "display: block" %>
+    <%= form.number_field :position_c %>
+  </div>
+  <div class="field">
+    <%= form.label :operator, style: "display: block" %>
+    <%= form.text_field :operator %>
+  </div>
+  <div class="field">
+    <%= form.label :unknown_position, style: "display: block" %>
+    <%= form.text_field :unknown_position %>
+  </div>
+  <div class="field">
+    <%= form.label :collection_ids %>
+    <%=
+      form.select :collection_ids,
+      options_from_collection_for_select(current_admin.collections, :id, :name),
+      multiple: true
+    %>
+  </div>
+  <div class="field hidden">
+    <%= form.label :user_admin_id %>
+    <%= form.text_field :user_admin_id, value: current_admin.id %>
+  </div>
+  <div class="actions mt-1">
+    <%= form.submit class: "btn green" %>
+  </div>
+<% end %>

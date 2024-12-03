@@ -6,31 +6,54 @@
     <strong><%= "#{t 'activerecord.attributes.collection.equations_quantity'}:" %></strong>
     <%= collection.equations_quantity %>
   </p>
-  <p>
-    <!--TODO: Uncomment when add equation model-->
-    <!--<strong><%#= "#{t('activerecord.models.equation').pluralize}:" %></strong>
-    <table>
-      <thead>
+  <p><strong><%= "#{t('activerecord.models.equation').pluralize}:" %></strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t "helpers.label.equation.id" %></th>
+        <th><%= t "helpers.label.equation.position_a" %></th>
+        <th><%= t "helpers.label.equation.operator" %></th>
+        <th><%= t "helpers.label.equation.position_b" %></th>
+        <th><%= t "helpers.label.equation.position_c" %></th>
+        <th><%= t "helpers.label.equation.unknown_position" %></th>
+        <th colspan="2"><%= t "helpers.actions" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.equations.each do |equation| %>
         <tr>
-          <th><%#= t "helpers.label.equation.id" %></th>
-          <th colspan="2"><%#= t "helpers.label.equation.name" %></th>
+          <td class="id-cell text-center">
+            <%= equation.id %>
+          </td>
+          <td class="number-cell text-center">
+            <%= equation.position_a %>
+          </td>
+          <td class="operator-cell text-center">
+            <%= equation.operator%>
+          </td>
+          <td class="number-cell text-center">
+            <%= equation.position_b %>
+          </td>
+          <td class="number-cell text-center">
+            <%= equation.position_c %>
+          </td>
+          <td class="unknown-cell text-center">
+            <%= equation.unknown_position.upcase %>
+          </td>
+          <td class="link-cell text-center">
+            <%= link_to t("equations.show"), equation, class: "text-xs" %>
+          </td>
+          <td class="link-cell text-center">
+            <%=
+                button_to t("equations.remove"),
+                remove_equation_collection_path(equation, collection),
+                class: "btn btn-small crimson",
+                method: :patch,
+                data: { turbo_method: :patch }
+              %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <%# collection.equations.each do |equation| %>-->
-    <!--          <tr>
-            <td class="id-cell">
-              <%#= equation.id %>-->
-    <!--            </td>
-            <td class="name-cell">
-              <%#= equation.name %>-->
-    <!--            </td>
-            <td class="link-cell">
-              <%#= link_to t("equations.show"), equation, class: "text-xs" %>-->
-    <!--            </td>
-          </tr>
-        <%# end %>-->
-    <!--      </tbody>
-    </table>-->
-  </p>
+      <% end %>
+    </tbody>
+  </table>
 </div>

@@ -3,7 +3,8 @@ class User::ParticipantsController < ApplicationController
 
   # GET /user/participants or /user/participants.json
   def index
-    @user_participants = User::Participant.all
+    # @user_participants = User::Participant.all
+    @user_participants = current_admin.participants
   end
 
   # GET /user/participants/1 or /user/participants/1.json
@@ -26,7 +27,7 @@ class User::ParticipantsController < ApplicationController
 
     respond_to do |format|
       if @user_participant.save
-        format.html { redirect_to @user_participant, notice: "Participant was successfully created." }
+        format.html { redirect_to @user_participant, notice: t("participants.created") }
         format.json { render :show, status: :created, location: @user_participant }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -40,7 +41,7 @@ class User::ParticipantsController < ApplicationController
     add_participant_to_groups(group_ids)
     respond_to do |format|
       if @user_participant.update(participant_params)
-        format.html { redirect_to @user_participant, notice: "Participant was successfully updated." }
+        format.html { redirect_to @user_participant, notice: t("participants.updated") }
         format.json { render :show, status: :ok, location: @user_participant }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -54,7 +55,7 @@ class User::ParticipantsController < ApplicationController
     @user_participant.destroy!
 
     respond_to do |format|
-      format.html { redirect_to participants_path, status: :see_other, notice: "Participant was successfully destroyed." }
+      format.html { redirect_to participants_path, status: :see_other, notice: t("participants.destroyed") }
       format.json { head :no_content }
     end
   end

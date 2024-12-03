@@ -27,13 +27,10 @@
     <%= form.date_field :birth_date %>
   </div>
   <div class="field">
-    <%#= form.label :group_id %>
-    <%#= form.select :group_id, current_admin.groups.collect { |g| [ g.name, g.id ] } %>
     <%= form.label :group_ids %>
-    <!-- Verificar se utilizando Group.all irá retornar grupos de outros admins -->
     <%=
       form.select :group_ids,
-      options_from_collection_for_select(Group.all, :id, :name),
+      options_from_collection_for_select(current_admin.groups, :id, :name),
       multiple: true
     %>
   </div>

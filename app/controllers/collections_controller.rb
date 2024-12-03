@@ -1,9 +1,10 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: %i[ show edit update destroy ]
+  before_action :set_collection, only: %i[ show edit update destroy remove_equation ]
+  before_action :equation, only: :remove_equation
 
   # GET /collections or /collections.json
   def index
-    @collections = Collection.all
+    @collections = current_admin.collections
   end
 
   # GET /collections/1 or /collections/1.json
@@ -25,7 +26,7 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
-        format.html { redirect_to @collection, notice: "Collection was successfully created." }
+        format.html { redirect_to @collection, notice: t("collections.created") }
         format.json { render :show, status: :created, location: @collection }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +39,7 @@ class CollectionsController < ApplicationController
   def update
     respond_to do |format|
       if @collection.update(collection_params)
-        format.html { redirect_to @collection, notice: "Collection was successfully updated." }
+        format.html { redirect_to @collection, notice: t("collections.updated") }
         format.json { render :show, status: :ok, location: @collection }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,9 +53,14 @@ class CollectionsController < ApplicationController
     @collection.destroy!
 
     respond_to do |format|
-      format.html { redirect_to collections_path, status: :see_other, notice: "Collection was successfully destroyed." }
+      format.html { redirect_to collections_path, status: :see_other, notice: t("collections.destroyed") }
       format.json { head :no_content }
     end
+  end
+
+  def remove_equation
+    @collection.equations.delete(@equation)
+    redirect_to @collection
   end
 
   private
@@ -66,5 +72,10 @@ class CollectionsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def collection_params
     params.require(:collection).permit(:name, :equations_quantity, :user_admin_id)
+  end
+
+  # Finds the equation with the given id
+  def equation
+    @equation ||= Equation.find(params[:equation_id])
   end
 end

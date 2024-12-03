@@ -1,0 +1,13 @@
+<main class="background">
+  <section class="blur">
+    <%= render "shared/header" %>
+    <div class="panel equation">
+      <%= render @equation %>
+      <div class="actions">
+        <%= link_to t("equations.edit"), edit_equation_path(@equation) %>
+        <%= link_to t("equations.back"), equations_path %>
+        <%= button_to t("equations.delete"), @equation, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </section>
+</main>

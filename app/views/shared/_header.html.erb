@@ -1,7 +1,13 @@
 <header>
   <nav>
     <div class="nav-links">
-      <%= link_to t("home.homepage"), root_path, class: "home" %>
+      <%= link_to t("home.homepage"), root_path, class: "nav-item" %>
+      <% if admin_signed_in? %>
+        <%= link_to t("activerecord.models.user/participant").pluralize, participants_path, class: "nav-item" %>
+        <%= link_to t("activerecord.models.group").pluralize, groups_path, class: "nav-item" %>
+        <%= link_to t("activerecord.models.collection").pluralize, collections_path, class: "nav-item" %>
+        <%= link_to t("activerecord.models.equation").pluralize, equations_path, class: "nav-item" %>
+      <% end %>
     </div>
     <div class="right">
       <div class="lang">
@@ -13,7 +19,7 @@
       </div>
       <div class="user">
         <% if admin_signed_in? %>
-          <span class="center-vh username"><%= current_admin.first_name %> <%= current_admin.last_name %></span>
+          <span class="center-vh user-name"><%= current_admin.first_name %> <%= current_admin.last_name %></span>
           <%= button_to t("devise.sessions.sign_out"), destroy_admin_session_path, class: "btn btn-small btn-header crimson", method: :delete, data: { turbo_method: :delete } %>
         <% else %>
           <%= button_to t("devise.sessions.sign_in"), new_admin_session_path, class: "btn btn-small btn-header green", method: :get, data: { turbo_method: :get } %>

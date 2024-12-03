@@ -1,9 +1,9 @@
+<% content_for :title, t("collections.editing") %>
 <main class="background">
-  <% content_for :title, t("collections.editing") %>
   <div class="blur">
     <%= render 'shared/header' %>
+    <h2><%= t("collections.new") %></h2>
     <div class="panel form">
-      <h2><%= t("collections.new") %></h2>
       <%= render "form", collection: @collection %>
       <div class="actions">
         <%= link_to t("collections.show"), @collection %>

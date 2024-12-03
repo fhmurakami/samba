@@ -1,0 +1,19 @@
+<main class="background">
+  <% content_for :title, t("activerecord.models.equation").pluralize %>
+  <section class="blur">
+    <%= render 'shared/header' %>
+    <h2><%= t("activerecord.models.equation").pluralize %></h2>
+    <div class="equations">
+      <%= link_to t("equations.new"), new_equation_path, class: "btn pumpkin" %>
+      <div id="equations">
+        <% @equations.each do |equation| %>
+          <div class="card equation">
+            <%= render equation %>
+            <%= link_to t("equations.show"), equation %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to t("home.back"), root_path, class: "btn mustard btn-text-black" %>
+    </div>
+  </section>
+</main>

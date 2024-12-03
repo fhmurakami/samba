@@ -1,0 +1,14 @@
+<main class="background">
+  <% content_for :title, t("equations.new") %>
+  <section class="blur">
+    <%= render 'shared/header' %>
+    <h2><%= t "equations.new" %></h2>
+    <div class="panel form">
+      <%= render "form", equation: @equation %>
+      <div class="actions">
+        <%= link_to t("equations.show_all"), equations_path %>
+        <%= link_to t("home.back"), root_path %>
+      </div>
+    </div>
+  </section>
+</main>
