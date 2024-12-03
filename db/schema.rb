@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_25_233128) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_29_184908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "collection_equations", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "equation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_collection_equations_on_collection_id"
+    t.index ["equation_id"], name: "index_collection_equations_on_equation_id"
+  end
 
   create_table "collections", force: :cascade do |t|
     t.string "name"
@@ -21,6 +30,18 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_25_233128) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_admin_id"], name: "index_collections_on_user_admin_id"
+  end
+
+  create_table "equations", force: :cascade do |t|
+    t.integer "position_a"
+    t.integer "position_b"
+    t.integer "position_c"
+    t.string "operator"
+    t.string "unknown_position"
+    t.bigint "user_admin_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_admin_id"], name: "index_equations_on_user_admin_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -62,7 +83,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_25_233128) do
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
+  add_foreign_key "collection_equations", "collections"
+  add_foreign_key "collection_equations", "equations"
   add_foreign_key "collections", "user_admins"
+  add_foreign_key "equations", "user_admins"
   add_foreign_key "groups", "user_admins"
   add_foreign_key "user_participants", "user_admins"
 end

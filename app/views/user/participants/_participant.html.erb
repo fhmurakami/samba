@@ -1,12 +1,16 @@
 <h3>
   <%= participant.first_name %> <%= participant.last_name %>
 </h3>
-<div id="<%= dom_id participant %>">
-  <p>
-    <strong><%= "#{t 'activerecord.attributes.user/participant.birth_date'}:" %></strong>
-    <%= l(participant.birth_date) %>
-  </p>
-  <p>
+<div id="<%= dom_id participant %>" class="attributes">
+  <div class="participant attribute">
+    <span>
+      <strong><%= "#{t 'activerecord.attributes.user/participant.birth_date'}:" %></strong>
+    </span>
+    <p>
+      <%= l(participant.birth_date) %>
+    </p>
+  </div>
+  <div class="participant attribute">
     <strong><%= "#{t('activerecord.models.group').pluralize}:" %></strong>
     <table>
       <thead>
@@ -31,5 +35,5 @@
         <% end %>
       </tbody>
     </table>
-  </p>
+  </div>
 </div>

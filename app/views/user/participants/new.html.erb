@@ -1,9 +1,9 @@
+<% content_for :title, t("participants.new") %>
 <main class="background">
-  <% content_for :title, t("participants.new") %>
   <div class="blur">
     <%= render 'shared/header' %>
+    <h2><%= t("participants.new") %></h2>
     <div class="panel form">
-      <h2><%= t("participants.new") %></h2>
       <%= render "form", user_participant: @user_participant, group_id: @group_id %>
       <br>
       <div class="actions">
