@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_29_184908) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.bigint "user_participant_id", null: false
+    t.bigint "equation_id", null: false
+    t.integer "answer_value"
+    t.boolean "correct_answer"
+    t.time "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equation_id"], name: "index_answers_on_equation_id"
+    t.index ["user_participant_id"], name: "index_answers_on_user_participant_id"
+  end
 
   create_table "collection_equations", force: :cascade do |t|
     t.bigint "collection_id", null: false
@@ -83,6 +95,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_29_184908) do
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
+  add_foreign_key "answers", "equations"
+  add_foreign_key "answers", "user_participants"
   add_foreign_key "collection_equations", "collections"
   add_foreign_key "collection_equations", "equations"
   add_foreign_key "collections", "user_admins"

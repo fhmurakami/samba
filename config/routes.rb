@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root "home#index"
     get "home/index"
     devise_for :admins, class_name: "User::Admin"
+    resources :answers
     resources :collections
     resources :equations
     resources :groups
