@@ -1,0 +1,75 @@
+<div id="<%= dom_id answer %>">
+  <!--<p>
+    <strong>User participant:</strong>
+    <%#= answer.user_participant_id %>-->
+  <!--  </p>
+  <p>
+    <strong>Equation:</strong>
+    <%#= answer.equation_id %>-->
+  <!--  </p>
+  <p>
+    <strong>Answer value:</strong>
+    <%#= answer.answer_value %>-->
+  <!--  </p>
+  <p>
+    <strong>Correct answer:</strong>
+    <%#= answer.correct_answer %>-->
+  <!--  </p>
+  <p>
+    <strong>Time:</strong>
+    <%#= answer.time %>-->
+  <!--  </p>-->
+  <!-- TODO: Finish organizing the table -->
+  <table>
+    <thead>
+      <tr>
+        <th><strong><%= t("activerecord.models.collection") %></strong></th>
+        <th><%= answer.collection %></th>
+      </tr>
+      <tr colspan="<% answer.collection.equations_quantity + 1 %>">
+        <th>
+          <strong><%= t("activerecord.models.user/participant") %></strong>
+        </th>
+        <th><%= "#{participant.first_name} #{participant.last_name}" %></th>
+      </tr>
+      <tr>
+        <th><%= t "helpers.label.collection.name" %></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% group.participants.each do |participant| %>
+        <tr>
+          <td>
+            <%= participant.id %>
+          </td>
+          <td>
+            <%= "#{participant.first_name} #{participant.last_name}" %>
+          </td>
+          <td>
+            <%= participant.birth_date %>
+          </td>
+          <td>
+            <%= link_to t("participants.show"), participant, class: "text-xs" %>
+          </td>
+          <td>
+            <%=
+              button_to t("participants.remove_from_group"),
+              remove_participant_group_path(participant, group),
+              class: "btn btn-small crimson",
+              method: :patch,
+              data: { turbo_method: :patch, confirm: t("participants.remove_from_group?") }
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">
+          <%= link_to t("participants.new"), new_participant_path(group_id: group.id), class: "btn btn-small text-s pumpkin" %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

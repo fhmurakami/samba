@@ -1,6 +1,6 @@
 <main class="background">
   <div class="blur">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <div class="panel form">
       <h2><%= t "devise.passwords.forgot_password?" %></h2>
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>

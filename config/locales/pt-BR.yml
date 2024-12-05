@@ -5,6 +5,18 @@ pt-BR:
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
+  answers:
+    back: "Voltar para respostas"
+    delete: "Excluir resposta"
+    edit: "Editar resposta"
+    editing: "Editando resposta"
+    new: "Nova resposta"
+    register: "Cadastrar nova resposta"
+    show: "Ver resposta"
+    show_all: "Ver todas as respostas"
+    created: "A resposta foi criada com sucesso."
+    updated: "A resposta foi atualizada com sucesso."
+    destroyed: "A resposta foi excluída com sucesso."
   collections:
     back: "Voltar para conjuntos"
     delete: "Excluir conjunto"
@@ -61,6 +73,10 @@ pt-BR:
     destroyed: "O grupo foi excluído com sucesso."
   activerecord:
     attributes:
+      answer:
+        answer_value: "Valor da resposta"
+        correct_answer: "Resposta correta"
+        time: "Tempo"
       collection:
         name: "Nome"
         equations_quantity: "Quantidade de equações"
@@ -86,6 +102,7 @@ pt-BR:
         birth_date: "Data de nascimento"
         group_id: "Grupo"
     models:
+      answer: "Resposta"
       collection: "Conjunto"
       equation: "Equação"
       group: "Grupo"

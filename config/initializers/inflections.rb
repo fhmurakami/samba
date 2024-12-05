@@ -13,6 +13,7 @@
 # end
 
 ActiveSupport::Inflector.inflections do |inflect|
+  inflect.plural (/(resposta)/i), "\\1s" # pluralize "resposta"/"Resposta" adding an "s" at the end
   inflect.irregular "equação", "equações"
 end
 
