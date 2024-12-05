@@ -16,13 +16,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
 
   create_table "answers", force: :cascade do |t|
     t.bigint "user_participant_id", null: false
-    t.bigint "equation_id", null: false
+    t.bigint "collection_equation_id", null: false
     t.integer "answer_value"
     t.boolean "correct_answer"
-    t.time "time"
+    t.integer "time_spent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["equation_id"], name: "index_answers_on_equation_id"
+    t.index ["collection_equation_id"], name: "index_answers_on_collection_equation_id"
     t.index ["user_participant_id"], name: "index_answers_on_user_participant_id"
   end
 
@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
-  add_foreign_key "answers", "equations"
+  add_foreign_key "answers", "collection_equations"
   add_foreign_key "answers", "user_participants"
   add_foreign_key "collection_equations", "collections"
   add_foreign_key "collection_equations", "equations"
