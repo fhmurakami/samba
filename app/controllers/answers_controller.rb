@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to @answer, notice: "Answer was successfully created." }
+        format.html { redirect_to @answer, notice: t("answers.created") }
         format.json { render :show, status: :created, location: @answer }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to @answer, notice: "Answer was successfully updated." }
+        format.html { redirect_to @answer, notice: t("answers.updated") }
         format.json { render :show, status: :ok, location: @answer }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,7 +52,7 @@ class AnswersController < ApplicationController
     @answer.destroy!
 
     respond_to do |format|
-      format.html { redirect_to answers_path, status: :see_other, notice: "Answer was successfully destroyed." }
+      format.html { redirect_to answers_path, status: :see_other, notice: t("answers.destroyed") }
       format.json { head :no_content }
     end
   end

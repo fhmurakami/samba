@@ -1,11 +1,9 @@
-<% content_for :title, "New answer" %>
-
-<h1>New answer</h1>
-
-<%= render "form", answer: @answer %>
-
-<br>
-
-<div>
-  <%= link_to "Back to answers", answers_path %>
-</div>
+<% content_for :title, t("answers.new") %>
+<main class="background green">
+  <div class="blur">
+    <div class="panel form">
+      <!--<h2> TODO: Add instructions? </h2>-->
+      <%= render "form", answer: @answer %>
+    </div>
+  </div>
+</main>

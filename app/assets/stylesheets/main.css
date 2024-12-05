@@ -313,6 +313,7 @@ nav div.user {
   min-height: 60vh;
 }
 
+.answers,
 .collections,
 .equations,
 .groups,
@@ -351,6 +352,7 @@ nav div.user {
   gap: 2.5vmin;
 }
 
+#answers,
 #collections,
 #groups {
   width: 100%;
@@ -412,6 +414,7 @@ nav div.user {
   margin: 0.25vmin auto;
 }
 
+.answers a,
 .collections a,
 .equations a,
 .groups a,
@@ -547,10 +550,11 @@ th,
 td {
   border: 1px solid var(--black);
   padding: 0.5rem;
+  text-align: center;
 }
 
-td.id-cell,
+/* td.id-cell,
 td.name-cell,
 td.link-cell {
   text-align: center;
-}
+} */
