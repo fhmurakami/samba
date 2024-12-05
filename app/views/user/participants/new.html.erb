@@ -1,7 +1,7 @@
 <% content_for :title, t("participants.new") %>
 <main class="background">
   <div class="blur">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <h2><%= t("participants.new") %></h2>
     <div class="panel form">
       <%= render "form", user_participant: @user_participant, group_id: @group_id %>

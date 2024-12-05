@@ -1,7 +1,7 @@
+<% content_for :title, t("activerecord.models.group").pluralize %>
 <main class="background">
-  <% content_for :title, t("activerecord.models.group").pluralize %>
   <div class="blur">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <h2><%= t("activerecord.models.group").pluralize %></h2>
     <div class="groups">
       <%= link_to t("groups.new"), new_group_path, class: "btn pumpkin" %>

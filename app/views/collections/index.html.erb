@@ -1,7 +1,7 @@
 <main class="background">
   <% content_for :title, t("activerecord.models.collection").pluralize %>
   <div class="blur">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <h2><%= t("activerecord.models.collection").pluralize %></h2>
     <div class="collections">
       <%= link_to t("collections.new"), new_collection_path, class: "btn pumpkin" %>

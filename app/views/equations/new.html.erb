@@ -1,7 +1,7 @@
+<% content_for :title, t("equations.new") %>
 <main class="background">
-  <% content_for :title, t("equations.new") %>
   <section class="blur">
-    <%= render 'shared/header' %>
+    <%= render "shared/header" %>
     <h2><%= t "equations.new" %></h2>
     <div class="panel form">
       <%= render "form", equation: @equation %>
