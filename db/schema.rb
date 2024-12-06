@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,6 +71,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
     t.index ["user_participant_id", "group_id"], name: "idx_on_user_participant_id_group_id_cfaf1742ea"
   end
 
+  create_table "participant_collection_sessions", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "user_participant_id", null: false
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_participant_collection_sessions_on_collection_id"
+    t.index ["user_participant_id"], name: "index_participant_collection_sessions_on_user_participant_id"
+  end
+
   create_table "user_admins", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -102,5 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
   add_foreign_key "collections", "user_admins"
   add_foreign_key "equations", "user_admins"
   add_foreign_key "groups", "user_admins"
+  add_foreign_key "participant_collection_sessions", "collections"
+  add_foreign_key "participant_collection_sessions", "user_participants"
   add_foreign_key "user_participants", "user_admins"
 end
