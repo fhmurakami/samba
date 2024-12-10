@@ -2,6 +2,8 @@ class CollectionEquation < ApplicationRecord
   belongs_to :collection
   belongs_to :equation
 
+  has_many :answers
+
   validate :collection_equation_limit
 
   private
