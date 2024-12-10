@@ -3,24 +3,28 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /pt-BR|en/ do
     # Defines the root path route ("/")
     root "home#index"
-    get "home/index"
+    get "new_participant_session", to: "home#new_participant_session"
+
+    # Devise routes for User::Admin authentication
     devise_for :admins, class_name: "User::Admin"
     resources :answers
     resources :collections
     resources :equations
     resources :groups
     resources :participants, module: :user
-    resources :participants, module: :user, only: [] do
-      resources :groups, only: [] do
-        member do
-          patch "remove", to: "/groups#remove_participant", as: :remove
-        end
-      end
-    end
+
     resources :equations, only: [] do
       resources :collections, only: [] do
         member do
           patch "remove", to: "collections#remove_equation", as: :remove
+        end
+      end
+    end
+
+    resources :participants, module: :user, only: [] do
+      resources :groups, only: [] do
+        member do
+          patch "remove", to: "/groups#remove_participant", as: :remove
         end
       end
     end
