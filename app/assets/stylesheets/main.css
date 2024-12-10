@@ -1,6 +1,7 @@
 @import url(https://fonts.bunny.net/css?family=coiny:400);
 
 :root {
+  --background-green: #9ae978;
   --black: #2e2f30;
   --blue: #436cac;
   --crimson: #9c474c;
@@ -208,6 +209,10 @@ nav div.user {
   max-width: 100%;
   min-height: 100vh;
   height: fit-content;
+}
+
+.background.green {
+  background: var(--background-green);
 }
 
 .blur {
@@ -430,6 +435,11 @@ nav div.user {
   justify-content: center;
 }
 
+.form form .row {
+  display: flex;
+  flex-direction: row;
+}
+
 .form .field input,
 .form .field select {
   font-size: 1rem;
@@ -445,6 +455,30 @@ nav div.user {
 .form .field select[multiple] {
   height: 6rem;
   padding: 0.5rem;
+}
+
+.form .field.number,
+.form .field.symbol {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+.field.number input,
+.field.symbol span {
+  width: 5rem;
+  height: 5rem;
+  text-align: center;
+}
+
+.field.number input {
+  font-size: 4rem;
+  align-self: end;
+}
+
+.field.symbol span {
+  font-size: 3rem;
+  align-self: end;
 }
 
 .actions {
@@ -480,6 +514,9 @@ nav div.user {
 
 .actions input.send-password:hover {
   color: var(--pumpkin);
+}
+
+.actions.answer input.btn {
 }
 
 a.forgot-password:hover {
@@ -552,9 +589,3 @@ td {
   padding: 0.5rem;
   text-align: center;
 }
-
-/* td.id-cell,
-td.name-cell,
-td.link-cell {
-  text-align: center;
-} */

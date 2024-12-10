@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     # Defines the root path route ("/")
     root "home#index"
     get "new_participant_session", to: "home#new_participant_session"
+    get "collections/start_session", to: "collections#start_session", as: "start_session"
+    post "collections/submit_answer", to: "collections#submit_answer", as: "submit_answer"
 
     # Devise routes for User::Admin authentication
     devise_for :admins, class_name: "User::Admin"
