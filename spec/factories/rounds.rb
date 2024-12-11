@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :participant_collection_session do
+  factory :round do
     collection { nil }
     participant { nil }
     started_at { "2024-12-06 14:52:50" }

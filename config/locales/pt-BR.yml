@@ -2,7 +2,7 @@
 pt-BR:
   home:
     homepage: "Home"
-    new_session: "Nova sessão"
+    new_round: "Nova sessão"
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
@@ -233,7 +233,7 @@ pt-BR:
       less_than_or_equal_to: deve ser menor ou igual a %{count}
       model_invalid: "A validação falhou: %{errors}"
       no_current_equation: "Nenhuma equação atual"
-      no_unanswered_questions: "Não há equações para resolver"
+      no_unanswered_equations: "Não há equações para resolver"
       not_a_number: não é um número
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
@@ -287,7 +287,7 @@ pt-BR:
       cancel: Cancelar
       create: Criar %{model}
       ok: OK
-      start_session: Iniciar sessão
+      start_round: Iniciar sessão
       submit: Salvar %{model}
       update: Atualizar %{model}
       reset_password_instructions: "Enviar instruções de redefinição de senha"

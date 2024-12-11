@@ -71,15 +71,19 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
     t.index ["user_participant_id", "group_id"], name: "idx_on_user_participant_id_group_id_cfaf1742ea"
   end
 
-  create_table "participant_collection_sessions", force: :cascade do |t|
+  create_table "rounds", force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.bigint "user_participant_id", null: false
+    t.bigint "current_equation_id"
     t.datetime "started_at"
     t.datetime "completed_at"
+    t.datetime "equation_started_at"
+    t.integer "round_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["collection_id"], name: "index_participant_collection_sessions_on_collection_id"
-    t.index ["user_participant_id"], name: "index_participant_collection_sessions_on_user_participant_id"
+    t.index ["collection_id"], name: "index_rounds_on_collection_id"
+    t.index ["current_equation_id"], name: "index_rounds_on_current_equation_id"
+    t.index ["user_participant_id"], name: "index_rounds_on_user_participant_id"
   end
 
   create_table "user_admins", force: :cascade do |t|
@@ -113,7 +117,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
   add_foreign_key "collections", "user_admins"
   add_foreign_key "equations", "user_admins"
   add_foreign_key "groups", "user_admins"
-  add_foreign_key "participant_collection_sessions", "collections"
-  add_foreign_key "participant_collection_sessions", "user_participants"
+  add_foreign_key "rounds", "collections"
+  add_foreign_key "rounds", "equations", column: "current_equation_id"
+  add_foreign_key "rounds", "user_participants"
   add_foreign_key "user_participants", "user_admins"
 end

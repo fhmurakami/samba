@@ -1,8 +1,8 @@
 class CollectionsController < ApplicationController
   before_action :find_equation, only: :remove_equation
-  before_action :set_collection, only: %i[ show edit update destroy remove_equation start_session submit_answer]
-  before_action :set_participant, only: %i[ start_session submit_answer]
-  before_action :set_service, only: %i[ start_session submit_answer]
+  before_action :set_collection, only: %i[ show edit update destroy remove_equation start_round submit_answer ]
+  before_action :set_participant, only: %i[ start_round submit_answer]
+  before_action :set_round, only: %i[ submit_answer finish_round ]
 
   # GET /collections or /collections.json
   def index
@@ -66,33 +66,51 @@ class CollectionsController < ApplicationController
     redirect_to @collection
   end
 
-  def start_session
+  def start_round
     # @collection = Collection.find(params[:collection_id])
 
     # Create service with the minimal required information
-    # @service = ParticipantCollectionSessionService.new(@collection, @participant)
+    @current_round = Round::StartService.call(@collection, @participant)
 
-    @service.start_session
     # Get the first equation
-    @current_equation = @service.next_equation
+    @current_equation = Round::NextEquationService.call(@current_round)
+
+    if @current_equation.nil?
+      redirect_to action: :finish_round, collection: @collection, participant: @participant
+    else
+      render :start_round
+    end
   end
 
   def submit_answer
-    @collection = Collection.find(params[:collection_id])
+    # @collection = Collection.find(params[:collection_id])
 
-    # Recreate the service with the necessary information
-    # service = ParticipantCollectionSessionService.new(@collection, @participant)
+    # # Recreate the service with the necessary information
+    # service = RoundService.new(@collection, @participant)
 
-    # Submit the answer
-    @answer = @service.submit_answer(params)
+    # # Submit the answer
+    # @answer = @service.submit_answer(params)
 
-    # Get next equation or finalize the session
-    begin
-      @current_equation = @service.next_equation
-      render :start
-    rescue StandardError
-      redirect_to collection_results_path(@collection)
+    # # Get next equation or finalize the round
+    # begin
+    #   @current_equation = @service.next_equation
+    #   render :start_round
+    # rescue StandardError
+    #   redirect_to collection_results_path(@collection)
+    # end
+    Round::SubmitAnswerService.call(@current_round, params[:answer_value])
+
+    # Get next equation or finalize the round
+    @current_equation = Round::NextEquationService.call(@current_round)
+    if @current_equation.nil?
+      redirect_to action: finish_round, collection: @collection, participant: @participant
+    else
+      render :start_round
     end
+  end
+
+  def finish_round
+    Round::FinishService.call(@current_round)
   end
 
   private
@@ -107,8 +125,8 @@ class CollectionsController < ApplicationController
     @equation ||= Equation.find(params[:equation_id])
   end
 
-  def set_service
-    @service ||= ParticipantCollectionSessionService.new(@collection, @participant)
+  def set_round
+    @current_round ||= Round.find_by(collection: @collection, participant: @participant)
   end
 
   # Finds and returns the participant associated with the given participant_id parameter.

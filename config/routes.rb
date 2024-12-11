@@ -3,9 +3,10 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /pt-BR|en/ do
     # Defines the root path route ("/")
     root "home#index"
-    get "new_participant_session", to: "home#new_participant_session"
-    get "collections/start_session", to: "collections#start_session", as: "start_session"
+    get "new_round", to: "home#new_round"
+    get "collections/start_round", to: "collections#start_round", as: "start_round"
     post "collections/submit_answer", to: "collections#submit_answer", as: "submit_answer"
+    get "collections/finish_round", to: "collections#finish_round", as: "finish_round"
 
     # Devise routes for User::Admin authentication
     devise_for :admins, class_name: "User::Admin"
