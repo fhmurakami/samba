@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
     t.integer "time_spent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "round_id", null: false
     t.index ["collection_equation_id"], name: "index_answers_on_collection_equation_id"
+    t.index ["round_id"], name: "index_answers_on_round_id"
     t.index ["user_participant_id"], name: "index_answers_on_user_participant_id"
   end
 
@@ -111,6 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_06_145249) do
   end
 
   add_foreign_key "answers", "collection_equations"
+  add_foreign_key "answers", "rounds"
   add_foreign_key "answers", "user_participants"
   add_foreign_key "collection_equations", "collections"
   add_foreign_key "collection_equations", "equations"
