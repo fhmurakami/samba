@@ -516,9 +516,6 @@ nav div.user {
   color: var(--pumpkin);
 }
 
-.actions.answer input.btn {
-}
-
 a.forgot-password:hover {
   color: var(--raspberry);
 }
