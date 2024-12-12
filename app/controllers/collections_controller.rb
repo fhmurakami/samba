@@ -1,7 +1,12 @@
 class CollectionsController < ApplicationController
   before_action :find_equation, only: :remove_equation
-  before_action :set_collection, only: %i[ show edit update destroy remove_equation start_round submit_answer ]
-  before_action :set_participant, only: %i[ start_round submit_answer]
+  before_action :set_collection, only: %i[
+    show edit update destroy remove_equation
+    start_round submit_answer finish_round
+  ]
+  before_action :set_participant, only: %i[
+    start_round submit_answer finish_round
+  ]
   before_action :set_round, only: %i[ submit_answer finish_round ]
 
   # GET /collections or /collections.json
@@ -28,11 +33,17 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
-        format.html { redirect_to @collection, notice: t("collections.created") }
+        format.html {
+          redirect_to @collection,
+          notice: t("collections.created")
+        }
         format.json { render :show, status: :created, location: @collection }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
+        format.json {
+          render json: @collection.errors,
+          status: :unprocessable_entity
+        }
       end
     end
   end
@@ -41,11 +52,17 @@ class CollectionsController < ApplicationController
   def update
     respond_to do |format|
       if @collection.update(collection_params)
-        format.html { redirect_to @collection, notice: t("collections.updated") }
+        format.html {
+          redirect_to @collection,
+          notice: t("collections.updated")
+        }
         format.json { render :show, status: :ok, location: @collection }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
+        format.json {
+          render json: @collection.errors,
+          status: :unprocessable_entity
+        }
       end
     end
   end
@@ -55,7 +72,11 @@ class CollectionsController < ApplicationController
     @collection.destroy!
 
     respond_to do |format|
-      format.html { redirect_to collections_path, status: :see_other, notice: t("collections.destroyed") }
+      format.html {
+        redirect_to collections_path,
+        status: :see_other,
+        notice: t("collections.destroyed")
+      }
       format.json { head :no_content }
     end
   end
@@ -67,8 +88,6 @@ class CollectionsController < ApplicationController
   end
 
   def start_round
-    # @collection = Collection.find(params[:collection_id])
-
     # Create service with the minimal required information
     @current_round = Round::StartService.call(@collection, @participant)
 
@@ -76,48 +95,39 @@ class CollectionsController < ApplicationController
     @current_equation = Round::NextEquationService.call(@current_round)
 
     if @current_equation.nil?
-      redirect_to action: :finish_round, collection: @collection, participant: @participant
+      redirect_to action: :finish_round,
+        collection_id: @collection.id, participant_id: @participant.id
     else
       render :start_round
     end
   end
 
   def submit_answer
-    # @collection = Collection.find(params[:collection_id])
-
-    # # Recreate the service with the necessary information
-    # service = RoundService.new(@collection, @participant)
-
-    # # Submit the answer
-    # @answer = @service.submit_answer(params)
-
-    # # Get next equation or finalize the round
-    # begin
-    #   @current_equation = @service.next_equation
-    #   render :start_round
-    # rescue StandardError
-    #   redirect_to collection_results_path(@collection)
-    # end
     Round::SubmitAnswerService.call(@current_round, params[:answer_value])
 
     # Get next equation or finalize the round
     @current_equation = Round::NextEquationService.call(@current_round)
     if @current_equation.nil?
-      redirect_to action: finish_round, collection: @collection, participant: @participant
+      redirect_to action: :finish_round,
+        collection_id: @collection.id, participant_id: @participant.id
     else
       render :start_round
     end
   end
 
   def finish_round
+    # @current_round = Round.find_by(collection: @collection, participant: @participant, completed_at: nil)
     Round::FinishService.call(@current_round)
   end
 
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_collection
-    @collection = Collection.find(params[:id]) if params[:id]
-    @collection = Collection.find(params[:collection_id]) if params[:collection_id]
+    if params[:collection_id]
+      @collection = Collection.find(params[:collection_id])
+    else
+      @collection = Collection.find(params[:id])
+    end
   end
 
   # Finds the equation with the given id
@@ -126,7 +136,11 @@ class CollectionsController < ApplicationController
   end
 
   def set_round
-    @current_round ||= Round.find_by(collection: @collection, participant: @participant)
+    @current_round ||= Round.find_by(
+      collection: @collection,
+      participant: @participant,
+      completed_at: nil
+    )
   end
 
   # Finds and returns the participant associated with the given participant_id parameter.
