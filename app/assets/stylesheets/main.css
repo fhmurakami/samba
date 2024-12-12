@@ -318,6 +318,10 @@ nav div.user {
   min-height: 60vh;
 }
 
+.panel.round-finished {
+  justify-content: center;
+}
+
 .answers,
 .collections,
 .equations,

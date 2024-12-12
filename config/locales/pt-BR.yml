@@ -73,7 +73,8 @@ pt-BR:
     updated: "O participante foi atualizado com sucesso."
     destroyed: "O participante foi excluído com sucesso."
   rounds:
-    congrats: "Parabéns! Você respondeu todas as equações!"
+    congrats: "Parabéns!"
+    congrats_message: "Você respondeu todas as equações!"
   activerecord:
     attributes:
       answer:
