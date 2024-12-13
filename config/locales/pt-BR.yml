@@ -2,6 +2,7 @@
 pt-BR:
   home:
     homepage: "Home"
+    new_round: "Nova sessão"
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
@@ -18,17 +19,17 @@ pt-BR:
     updated: "A resposta foi atualizada com sucesso."
     destroyed: "A resposta foi excluída com sucesso."
   collections:
-    back: "Voltar para conjuntos"
-    delete: "Excluir conjunto"
-    edit: "Editar conjunto"
-    editing: "Editando conjunto"
-    new: "Novo conjunto"
-    register: "Cadastrar novo conjunto"
-    show: "Ver conjunto"
-    show_all: "Ver todos os conjuntos"
-    created: "O conjunto foi criado com sucesso."
-    updated: "O conjunto foi atualizado com sucesso."
-    destroyed: "O conjunto foi excluído com sucesso."
+    back: "Voltar para etapas"
+    delete: "Excluir etapa"
+    edit: "Editar etapa"
+    editing: "Editando etapa"
+    new: "Nova etapa"
+    register: "Cadastrar nova etapa"
+    show: "Ver etapa"
+    show_all: "Ver todas as etapas"
+    created: "A etapa foi criada com sucesso."
+    updated: "A etapa foi atualizada com sucesso."
+    destroyed: "A etapa foi excluída com sucesso."
     errors:
       equations_limit: "não pode ter mais do que %{equations_limit} equações"
   equations:
@@ -36,8 +37,8 @@ pt-BR:
     delete: "Excluir equação"
     edit: "Editar equação"
     editing: "Editando equação"
-    remove: "Remover do conjunto"
-    remove?: "Realmente deseja remover a equação do conjunto?"
+    remove: "Remover do etapa"
+    remove?: "Realmente deseja remover a equação do etapa?"
     new: "Nova equação"
     register: "Cadastrar equação"
     show: "Ver equação"
@@ -45,6 +46,18 @@ pt-BR:
     created: "A equação foi criada com sucesso."
     updated: "A equação foi atualizada com sucesso."
     destroyed: "A equação foi excluída com sucesso."
+  groups:
+    back: "Voltar para grupos"
+    delete: "Excluir grupo"
+    edit: "Editar grupo"
+    editing: "Editando grupo"
+    new: "Novo grupo"
+    select: "Selecionar grupo"
+    show: "Ver grupo"
+    show_all: "Ver todos os grupos"
+    created: "O grupo foi criado com sucesso."
+    updated: "O grupo foi atualizado com sucesso."
+    destroyed: "O grupo foi excluído com sucesso."
   participants:
     back: "Voltar para participantes"
     delete: "Excluir participante"
@@ -59,18 +72,9 @@ pt-BR:
     created: "O participante foi criado com sucesso."
     updated: "O participante foi atualizado com sucesso."
     destroyed: "O participante foi excluído com sucesso."
-  groups:
-    back: "Voltar para grupos"
-    delete: "Excluir grupo"
-    edit: "Editar grupo"
-    editing: "Editando grupo"
-    new: "Novo grupo"
-    select: "Selecionar grupo"
-    show: "Ver grupo"
-    show_all: "Ver todos os grupos"
-    created: "O grupo foi criado com sucesso."
-    updated: "O grupo foi atualizado com sucesso."
-    destroyed: "O grupo foi excluído com sucesso."
+  rounds:
+    congrats: "Parabéns!"
+    congrats_message: "Você respondeu todas as equações!"
   activerecord:
     attributes:
       answer:
@@ -86,7 +90,7 @@ pt-BR:
         position_c: "Posição C"
         operator: "Operador"
         unknown_position: "Posição incógnita"
-        collection_id: "Conjunto"
+        collection_id: "Etapa"
       group:
         name: "Nome"
       user/admin:
@@ -103,9 +107,10 @@ pt-BR:
         group_id: "Grupo"
     models:
       answer: "Resposta"
-      collection: "Conjunto"
+      collection: "Etapa"
       equation: "Equação"
       group: "Grupo"
+      round: "Sessão"
       user/admin: "Admin"
       user/participant: "Participante"
     errors:
@@ -231,6 +236,8 @@ pt-BR:
       less_than: deve ser menor que %{count}
       less_than_or_equal_to: deve ser menor ou igual a %{count}
       model_invalid: "A validação falhou: %{errors}"
+      no_current_equation: "Nenhuma equação atual"
+      no_unanswered_equations: "Não há equações para resolver"
       not_a_number: não é um número
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
@@ -259,8 +266,8 @@ pt-BR:
         name: "Nome"
         equations_quantity: "Quantidade de equações"
       equation:
-        collection_id: "Conjunto"
-        collection_ids: "Conjuntos"
+        collection_id: "Etapa"
+        collection_ids: "Etapas"
         operator: "Operador"
         position_a: "Posição A"
         position_b: "Posição B"
@@ -281,7 +288,10 @@ pt-BR:
     select:
       prompt: Por favor selecione
     submit:
+      cancel: Cancelar
       create: Criar %{model}
+      ok: OK
+      start_round: Iniciar sessão
       submit: Salvar %{model}
       update: Atualizar %{model}
       reset_password_instructions: "Enviar instruções de redefinição de senha"

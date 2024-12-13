@@ -1,0 +1,22 @@
+  <%= form_with url: start_round_path, method: :get do |form| %>
+  <div class="field">
+    <%= form.label :participant_id, t("activerecord.models.user/participant") %>
+    <%=
+      form.select :participant_id,
+      options_from_collection_for_select(current_admin.participants, :id, :full_name)
+    %>
+  </div>
+  <div class="field">
+    <%= form.label :collection_id, t("activerecord.models.collection") %>
+    <%=
+        form.select :collection_id,
+        options_from_collection_for_select(
+          current_admin.collections, :id, :name
+        )
+      %>
+  </div>
+  <div class="actions mt-1">
+    <%= form.submit t("helpers.submit.start_round"), class: "btn green" %>
+    <%= link_to t("helpers.submit.cancel"), root_path, class: "btn crimson" %>
+  </div>
+<% end %>

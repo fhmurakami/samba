@@ -1,0 +1,36 @@
+  <%= form_with url: submit_answer_path, method: :post do |form| %>
+  <div class="row">
+    <div class="field number">
+      <%=
+        form.number_field :answer_value
+      %>
+    </div>
+    <div class="field symbol">
+      <span><%= @current_equation.operator %></span>
+    </div>
+    <div class="field number">
+      <%=
+        form.number_field :position_b, value: @current_equation.position_b, disabled: true
+      %>
+    </div>
+    <div class="field symbol">
+      <span> = </span>
+    </div>
+    <div class="field number">
+      <%=
+        form.number_field :position_c, value: @current_equation.position_c, disabled: true
+      %>
+    </div>
+    <div class="hidden field">
+      <%= form.label :collection_id %>
+      <%= form.text_field :collection_id, value: @collection.id %>
+    </div>
+    <div class="hidden field">
+      <%= form.label :participant_id %>
+      <%= form.text_field :participant_id, value: @participant.id %>
+    </div>
+  </div>
+  <div class="answer actions mt-1">
+    <%= form.submit t("helpers.submit.ok"), class: "btn green" %>
+  </div>
+<% end %>

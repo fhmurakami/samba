@@ -1,4 +1,4 @@
-<div class="background">
+<main class="background">
   <div class="blur">
     <%= render "shared/header" %>
     <% if !admin_signed_in? %>
@@ -9,20 +9,12 @@
     <% else %>
       <div class="panel homepage">
         <div class="buttons">
-          <div class="buttons collections">
-            <%= link_to t("collections.new"), new_collection_path, class: "btn btn-large blue" %>
-            <%= link_to t("collections.show_all"), collections_path, class: "btn btn-large raspberry" %>
+          <div class="buttons round">
+            <%= link_to t("home.new_round"), new_round_path, class: "btn btn-large blue" %>
+            <%#= link_to t("reports.show_all"), reports_path, class: "btn btn-large raspberry" %>
           </div>
-          <div class="buttons groups">
-            <%= link_to t("groups.new"), new_group_path, class: "btn btn-large pumpkin", method: :get, data: { turbo_method: :get } %>
-            <%= link_to t("groups.show_all"), groups_path, class: "btn btn-large lavender", method: :get, data: { turbo_method: :get } %>
-          </div>
-          <!--<div class="buttons participants">-->
-          <%#= link_to t("participants.register"), new_participant_path, class: "btn btn-large green", method: :get, data: { turbo_method: :get } %>
-          <%#= link_to t("participants.show_all"), participants_path, class: "btn btn-large crimson", method: :get, data: { turbo_method: :get } %>
-          <!--</div>-->
         </div>
       </div>
     <% end %>
   </div>
-</div>
+</main>

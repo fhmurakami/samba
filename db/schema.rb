@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +22,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
     t.integer "time_spent"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "round_id", null: false
     t.index ["collection_equation_id"], name: "index_answers_on_collection_equation_id"
+    t.index ["round_id"], name: "index_answers_on_round_id"
     t.index ["user_participant_id"], name: "index_answers_on_user_participant_id"
   end
 
@@ -71,6 +73,21 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
     t.index ["user_participant_id", "group_id"], name: "idx_on_user_participant_id_group_id_cfaf1742ea"
   end
 
+  create_table "rounds", force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "user_participant_id", null: false
+    t.bigint "current_equation_id"
+    t.datetime "started_at"
+    t.datetime "completed_at"
+    t.datetime "equation_started_at"
+    t.integer "round_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_rounds_on_collection_id"
+    t.index ["current_equation_id"], name: "index_rounds_on_current_equation_id"
+    t.index ["user_participant_id"], name: "index_rounds_on_user_participant_id"
+  end
+
   create_table "user_admins", force: :cascade do |t|
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
@@ -96,11 +113,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_04_193915) do
   end
 
   add_foreign_key "answers", "collection_equations"
+  add_foreign_key "answers", "rounds"
   add_foreign_key "answers", "user_participants"
   add_foreign_key "collection_equations", "collections"
   add_foreign_key "collection_equations", "equations"
   add_foreign_key "collections", "user_admins"
   add_foreign_key "equations", "user_admins"
   add_foreign_key "groups", "user_admins"
+  add_foreign_key "rounds", "collections"
+  add_foreign_key "rounds", "equations", column: "current_equation_id"
+  add_foreign_key "rounds", "user_participants"
   add_foreign_key "user_participants", "user_admins"
 end
