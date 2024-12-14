@@ -27,11 +27,10 @@
     <%= form.date_field :birth_date %>
   </div>
   <div class="field">
-    <%= form.label :group_ids %>
+    <%= form.label :group_id %>
     <%=
-      form.select :group_ids,
-      options_from_collection_for_select(current_admin.groups, :id, :name),
-      multiple: true
+      form.select :group_id,
+      options_from_collection_for_select(current_admin.groups, :id, :name)
     %>
   </div>
   <div class="field">
