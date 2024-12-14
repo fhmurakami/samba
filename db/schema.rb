@@ -66,13 +66,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
     t.index ["user_admin_id"], name: "index_groups_on_user_admin_id"
   end
 
-  create_table "groups_user_participants", id: false, force: :cascade do |t|
-    t.bigint "group_id", null: false
-    t.bigint "user_participant_id", null: false
-    t.index ["group_id", "user_participant_id"], name: "idx_on_group_id_user_participant_id_f27666c370"
-    t.index ["user_participant_id", "group_id"], name: "idx_on_user_participant_id_group_id_cfaf1742ea"
-  end
-
   create_table "rounds", force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.bigint "user_participant_id", null: false
@@ -109,6 +102,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_admin_id", null: false
+    t.bigint "group_id", null: false
+    t.index ["group_id"], name: "index_user_participants_on_group_id"
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
@@ -123,5 +118,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
   add_foreign_key "rounds", "collections"
   add_foreign_key "rounds", "equations", column: "current_equation_id"
   add_foreign_key "rounds", "user_participants"
+  add_foreign_key "user_participants", "groups"
   add_foreign_key "user_participants", "user_admins"
 end

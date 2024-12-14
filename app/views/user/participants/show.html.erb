@@ -4,7 +4,7 @@
     <div class="panel participant">
       <%= render @user_participant %>
       <div class="actions">
-        <%= link_to t("participants.edit"), edit_participant_path(@user_participant) %>
+        <%= link_to t("participants.new"), new_participant_path %>
         <%= link_to t("participants.back"), participants_path %>
         <%= button_to t("participants.delete"), @user_participant, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
       </div>

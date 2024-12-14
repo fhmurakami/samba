@@ -11,7 +11,7 @@
     </p>
   </div>
   <div class="participant attribute">
-    <strong><%= "#{t('activerecord.models.group').pluralize}:" %></strong>
+    <strong><%= "#{t('activerecord.models.group')}:" %></strong>
     <table>
       <thead>
         <tr>
@@ -20,20 +20,19 @@
         </tr>
       </thead>
       <tbody>
-        <% participant.groups.each do |group| %>
-          <tr>
-            <td class="id-cell">
-              <%= group.id %>
-            </td>
-            <td class="name-cell">
-              <%= group.name %>
-            </td>
-            <td class="link-cell">
-              <%= link_to t("groups.show"), group, class: "text-xs" %>
-            </td>
-          </tr>
-        <% end %>
+        <tr>
+          <td class="id-cell">
+            <%= participant.group.id %>
+          </td>
+          <td class="name-cell">
+            <%= participant.group.name %>
+          </td>
+          <td class="link-cell">
+            <%= link_to t("groups.show"), participant.group, class: "text-xs" %>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
+  <%= link_to t("participants.edit"), edit_participant_path(participant), class: "btn btn-small lavender" %>
 </div>

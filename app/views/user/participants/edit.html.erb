@@ -2,8 +2,8 @@
 <main class="background">
   <div class="blur">
     <%= render "shared/header" %>
+    <h2><%= t "participants.editing" %></h2>
     <div class="panel form">
-      <h2><%= t "participants.editing" %></h2>
       <%= render "form", user_participant: @user_participant %>
       <div class="actions">
         <%= link_to t("participants.show"), @user_participant %>
