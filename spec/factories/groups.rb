@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :group do
-    name { "MyString" }
-    user_admin { nil }
+    name { FFaker::FreedomIpsum.word }
+    user_admin
   end
 end
