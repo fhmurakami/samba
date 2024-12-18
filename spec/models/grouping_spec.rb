@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Group, type: :model do
+RSpec.describe Grouping, type: :model do
   describe 'database columns' do
     it { should have_db_column(:name).of_type(:string) }
     it { should have_db_column(:user_admin_id).of_type(:integer) }
@@ -16,12 +16,12 @@ RSpec.describe Group, type: :model do
   end
 
   describe "#remove_participant" do
-    it "removes a participant from the group" do
-      group = create(:group)
-      participant = create(:user_participant, group: group)
-      expect(group.participants).to include(participant)
-      group.remove_participant(participant)
-      expect(group.participants).to_not include(participant)
+    it "removes a participant from the grouping" do
+      grouping = create(:grouping)
+      participant = create(:user_participant, grouping: grouping)
+      expect(grouping.participants).to include(participant)
+      grouping.remove_participant(participant)
+      expect(grouping.participants).to_not include(participant)
     end
   end
 end

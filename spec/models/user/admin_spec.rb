@@ -15,7 +15,7 @@ RSpec.describe User::Admin, type: :model do
 
   describe 'model associations' do
     it { should have_many(:participants).class_name('User::Participant') }
-    it { should have_many(:groups) }
+    it { should have_many(:groupings) }
     it { should have_many(:collections) }
     it { should have_many(:equations) }
   end

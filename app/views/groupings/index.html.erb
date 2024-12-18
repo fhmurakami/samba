@@ -1,0 +1,19 @@
+<% content_for :title, t("activerecord.models.grouping").pluralize %>
+<main class="background">
+  <div class="blur">
+    <%= render "shared/header" %>
+    <h2><%= t("activerecord.models.grouping").pluralize %></h2>
+    <div class="groupings">
+      <%= link_to t("groupings.new"), new_grouping_path, class: "btn pumpkin" %>
+      <div id="groupings">
+        <% @groupings.each do |grouping| %>
+          <div class="card grouping">
+            <%= render grouping %>
+            <%= link_to t("groupings.show"), grouping %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to t("home.back"), root_path, class: "btn mustard btn-text-black" %>
+    </div>
+  </div>
+</main>

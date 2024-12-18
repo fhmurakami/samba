@@ -4,7 +4,7 @@
       <%= link_to t("home.homepage"), root_path, class: "nav-item" %>
       <% if admin_signed_in? %>
         <%= link_to t("activerecord.models.user/participant").pluralize, participants_path, class: "nav-item" %>
-        <%= link_to t("activerecord.models.group").pluralize, groups_path, class: "nav-item" %>
+        <%= link_to t("activerecord.models.grouping").pluralize, groupings_path, class: "nav-item" %>
         <%= link_to t("activerecord.models.collection").pluralize, collections_path, class: "nav-item" %>
         <%= link_to t("activerecord.models.equation").pluralize, equations_path, class: "nav-item" %>
         <%#= link_to t("activerecord.models.answer").pluralize, answers_path, class: "nav-item" %>

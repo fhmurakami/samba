@@ -6,12 +6,12 @@ RSpec.describe User::Participant, type: :model do
   it { is_expected.to have_db_column(:birth_date).of_type(:date) }
 
   it { is_expected.to belong_to :user_admin }
-  it { is_expected.to belong_to :group }
+  it { is_expected.to belong_to :grouping }
   it { is_expected.to have_many :answers }
 
   describe "when creating a new User::Participant" do
     it "is valid with valid attributes" do
-      expect(User::Participant.new(first_name: "John", last_name: "Doe", birth_date: 5.years.ago, group: build(:group), user_admin: build(:user_admin))).to be_valid
+      expect(User::Participant.new(first_name: "John", last_name: "Doe", birth_date: 5.years.ago, grouping: build(:grouping), user_admin: build(:user_admin))).to be_valid
     end
 
     it "is not valid without a first name" do

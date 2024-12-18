@@ -1,20 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe "groups/index", type: :view do
+RSpec.describe "groupings/index", type: :view do
   before(:each) do
-    assign(:groups, [
-      Group.create!(
+    assign(:groupings, [
+      Grouping.create!(
         name: "Name",
         user_admin: nil
       ),
-      Group.create!(
+      Grouping.create!(
         name: "Name",
         user_admin: nil
       )
     ])
   end
 
-  it "renders a list of groups" do
+  it "renders a list of groupings" do
     render
     cell_selector = 'div>p'
     assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2

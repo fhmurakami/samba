@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_18_195846) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,22 +58,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
     t.index ["user_admin_id"], name: "index_equations_on_user_admin_id"
   end
 
-  create_table "groups", force: :cascade do |t|
+  create_table "groupings", force: :cascade do |t|
     t.string "name"
     t.bigint "user_admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_admin_id"], name: "index_groups_on_user_admin_id"
+    t.index ["user_admin_id"], name: "index_groupings_on_user_admin_id"
   end
 
   create_table "reports", force: :cascade do |t|
     t.bigint "user_admin_id", null: false
     t.bigint "collection_id", null: false
-    t.bigint "group_id", null: false
+    t.bigint "grouping_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["collection_id"], name: "index_reports_on_collection_id"
-    t.index ["group_id"], name: "index_reports_on_group_id"
+    t.index ["grouping_id"], name: "index_reports_on_grouping_id"
     t.index ["user_admin_id"], name: "index_reports_on_user_admin_id"
   end
 
@@ -87,8 +87,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
     t.integer "round_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "report_id", null: false
     t.index ["collection_id"], name: "index_rounds_on_collection_id"
     t.index ["current_equation_id"], name: "index_rounds_on_current_equation_id"
+    t.index ["report_id"], name: "index_rounds_on_report_id"
     t.index ["user_participant_id"], name: "index_rounds_on_user_participant_id"
   end
 
@@ -110,11 +112,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.date "birth_date", null: false
+    t.bigint "user_admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_admin_id", null: false
-    t.bigint "group_id"
-    t.index ["group_id"], name: "index_user_participants_on_group_id"
+    t.bigint "grouping_id"
+    t.index ["grouping_id"], name: "index_user_participants_on_grouping_id"
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
 
@@ -125,13 +127,14 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
   add_foreign_key "collection_equations", "equations"
   add_foreign_key "collections", "user_admins"
   add_foreign_key "equations", "user_admins"
-  add_foreign_key "groups", "user_admins"
+  add_foreign_key "groupings", "user_admins"
   add_foreign_key "reports", "collections"
-  add_foreign_key "reports", "groups"
+  add_foreign_key "reports", "groupings"
   add_foreign_key "reports", "user_admins"
   add_foreign_key "rounds", "collections"
   add_foreign_key "rounds", "equations", column: "current_equation_id"
+  add_foreign_key "rounds", "reports"
   add_foreign_key "rounds", "user_participants"
-  add_foreign_key "user_participants", "groups"
+  add_foreign_key "user_participants", "groupings"
   add_foreign_key "user_participants", "user_admins"
 end

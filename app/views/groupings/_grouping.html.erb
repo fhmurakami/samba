@@ -1,7 +1,7 @@
 <h3>
-  <%= group.name %>
+  <%= grouping.name %>
 </h3>
-<div id="<%= dom_id group %>">
+<div id="<%= dom_id grouping %>">
   <table>
     <thead>
       <tr>
@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <% group.participants.each do |participant| %>
+      <% grouping.participants.each do |participant| %>
         <tr>
           <td>
             <%= participant.id %>
@@ -35,11 +35,11 @@
           </td>
           <td>
             <%=
-              button_to t("participants.remove_from_group"),
-              remove_participant_group_path(participant, group),
+              button_to t("participants.remove_from_grouping"),
+              remove_participant_grouping_path(participant, grouping),
               class: "btn btn-small crimson",
               method: :patch,
-              data: { turbo_method: :patch, confirm: t("participants.remove_from_group?") }
+              data: { turbo_method: :patch, confirm: t("participants.remove_from_grouping?") }
             %>
           </td>
         </tr>
@@ -48,7 +48,7 @@
     <tfoot>
       <tr>
         <th colspan="5">
-          <%= link_to t("participants.new"), new_participant_path(group_id: group.id), class: "btn btn-small text-s pumpkin" %>
+          <%= link_to t("participants.new"), new_participant_path(grouping_id: grouping.id), class: "btn btn-small text-s pumpkin" %>
         </th>
       </tr>
     </tfoot>

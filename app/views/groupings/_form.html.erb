@@ -1,14 +1,14 @@
-<%= form_with(model: group) do |form| %>
-  <% if group.errors.any? %>
+<%= form_with(model: grouping) do |form| %>
+  <% if grouping.errors.any? %>
     <div id="error_explanation" data-turbo-cache="false">
       <h3>
         <%= I18n.t("errors.messages.not_saved",
-                    count: group.errors.count,
-                    resource: group.class.model_name.human.downcase)
+                    count: grouping.errors.count,
+                    resource: grouping.class.model_name.human.downcase)
         %>
       </h3>
       <ul>
-        <% group.errors.each do |error| %>
+        <% grouping.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>

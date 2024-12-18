@@ -4,7 +4,7 @@
     <%= render "shared/header" %>
     <h2><%= t("participants.new") %></h2>
     <div class="panel form">
-      <%= render "form", user_participant: @user_participant, group_id: @group_id %>
+      <%= render "form", user_participant: @user_participant, grouping_id: @grouping_id %>
       <br>
       <div class="actions">
         <%= link_to t("participants.show_all"), participants_path %>

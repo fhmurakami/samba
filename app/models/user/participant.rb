@@ -3,8 +3,10 @@ module User
     attr_reader :full_name
 
     belongs_to :user_admin, class_name: "User::Admin"
-    belongs_to :group, optional: true
+    belongs_to :grouping, optional: true
     has_many :answers, dependent: :destroy
+    has_many :rounds
+    has_many :reports, through: :rounds
 
     validates :first_name, :last_name, :birth_date, presence: true
 

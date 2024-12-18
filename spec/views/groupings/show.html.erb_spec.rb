@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "groups/show", type: :view do
+RSpec.describe "groupings/show", type: :view do
   before(:each) do
-    assign(:group, Group.create!(
+    assign(:grouping, Grouping.create!(
       name: "Name",
       user_admin: nil
     ))
