@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_18_152332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -66,6 +66,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
     t.index ["user_admin_id"], name: "index_groups_on_user_admin_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.bigint "user_admin_id", null: false
+    t.bigint "collection_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_reports_on_collection_id"
+    t.index ["group_id"], name: "index_reports_on_group_id"
+    t.index ["user_admin_id"], name: "index_reports_on_user_admin_id"
+  end
+
   create_table "rounds", force: :cascade do |t|
     t.bigint "collection_id", null: false
     t.bigint "user_participant_id", null: false
@@ -102,7 +113,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_admin_id", null: false
-    t.bigint "group_id", null: false
+    t.bigint "group_id"
     t.index ["group_id"], name: "index_user_participants_on_group_id"
     t.index ["user_admin_id"], name: "index_user_participants_on_user_admin_id"
   end
@@ -115,6 +126,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_11_180649) do
   add_foreign_key "collections", "user_admins"
   add_foreign_key "equations", "user_admins"
   add_foreign_key "groups", "user_admins"
+  add_foreign_key "reports", "collections"
+  add_foreign_key "reports", "groups"
+  add_foreign_key "reports", "user_admins"
   add_foreign_key "rounds", "collections"
   add_foreign_key "rounds", "equations", column: "current_equation_id"
   add_foreign_key "rounds", "user_participants"
