@@ -18,15 +18,15 @@ RSpec.describe Answer, type: :model do
     it { should belong_to(:round) }
   end
 
-  context "when creating a new Answer" do
-    describe 'and the answer is valid' do
+  describe "when creating a new Answer" do
+    context 'and the answer is valid' do
       let(:answer) { build_stubbed :answer }
       it 'should return true' do
         expect(answer).to be_valid
       end
     end
 
-    describe 'and the answer is valid but already exists' do
+    context 'and the answer is valid but already exists' do
       let(:answer) { create :answer }
       let(:answer_with_same_attributes) do
         build_stubbed :answer,
@@ -40,7 +40,7 @@ RSpec.describe Answer, type: :model do
       end
     end
 
-    describe 'and the answer is invalid' do
+    context 'and the answer is invalid' do
       let(:answer) { build :answer, :invalid }
       it 'should not save' do
         expect(answer).not_to be_valid
