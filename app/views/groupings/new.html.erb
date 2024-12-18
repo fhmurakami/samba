@@ -1,0 +1,14 @@
+<main class="background">
+  <% content_for :title, t("groupings.new") %>
+  <div class="blur">
+    <%= render "shared/header" %>
+    <h2><%= t "groupings.new" %></h2>
+    <div class="panel form">
+      <%= render "form", grouping: @grouping %>
+      <div class="actions">
+        <%= link_to t("groupings.show_all"), groupings_path %>
+        <%= link_to t("home.back"), root_path %>
+      </div>
+    </div>
+  </div>
+</main>

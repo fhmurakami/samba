@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :collection do
-    name { "MyString" }
+    name { "MyCollection" }
     equations_quantity { 1 }
-    user_admin { nil }
+    user_admin
   end
 end

@@ -11,24 +11,24 @@
     </p>
   </div>
   <div class="participant attribute">
-    <strong><%= "#{t('activerecord.models.group')}:" %></strong>
+    <strong><%= "#{t('activerecord.models.grouping')}:" %></strong>
     <table>
       <thead>
         <tr>
-          <th><%= t "helpers.label.group.id" %></th>
-          <th colspan="2"><%= t "helpers.label.group.name" %></th>
+          <th><%= t "helpers.label.grouping.id" %></th>
+          <th colspan="2"><%= t "helpers.label.grouping.name" %></th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td class="id-cell">
-            <%= participant.group.id %>
+            <%= participant.grouping.id %>
           </td>
           <td class="name-cell">
-            <%= participant.group.name %>
+            <%= participant.grouping.name %>
           </td>
           <td class="link-cell">
-            <%= link_to t("groups.show"), participant.group, class: "text-xs" %>
+            <%= link_to t("groupings.show"), participant.grouping, class: "text-xs" %>
           </td>
         </tr>
       </tbody>

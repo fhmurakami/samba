@@ -1,0 +1,13 @@
+<main class="background">
+  <div class="blur">
+    <%= render "shared/header" %>
+    <div class="panel grouping">
+      <%= render @grouping %>
+      <div class="actions">
+        <%= link_to t("groupings.edit"), edit_grouping_path(@grouping) %>
+        <%= link_to t("groupings.back"), groupings_path %>
+        <%= button_to t("groupings.delete"), @grouping, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </div>
+</main>

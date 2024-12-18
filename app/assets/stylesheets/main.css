@@ -247,7 +247,7 @@ nav div.user {
 
 .buttons .collections,
 .buttons .equations,
-.buttons .groups,
+.buttons .groupings,
 .buttons .participants {
   width: 100%;
   gap: 2.5vmin;
@@ -325,7 +325,7 @@ nav div.user {
 .answers,
 .collections,
 .equations,
-.groups,
+.groupings,
 .participants {
   width: 90%;
   display: flex;
@@ -335,7 +335,7 @@ nav div.user {
 
 .collection h3,
 .equation h3,
-.group h3,
+.grouping h3,
 .participant h3 {
   color: var(--pumpkin);
   -webkit-text-stroke: 1px var(--black);
@@ -346,7 +346,7 @@ nav div.user {
 
 .collection p,
 .equation p,
-.group p,
+.grouping p,
 .participant p {
   -webkit-text-stroke: unset;
   font-size: 1.5rem;
@@ -363,7 +363,7 @@ nav div.user {
 
 #answers,
 #collections,
-#groups {
+#groupings {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -426,7 +426,7 @@ nav div.user {
 .answers a,
 .collections a,
 .equations a,
-.groups a,
+.groupings a,
 .participants a {
   text-align: center;
   font-size: 1.5rem;

@@ -3,8 +3,8 @@ FactoryBot.define do
     position_a { 1 }
     position_b { 1 }
     position_c { 1 }
-    operator { "MyString" }
-    unknown_position { "MyString" }
-    collection { nil }
+    operator { "*" }
+    unknown_position { "a" }
+    user_admin
   end
 end

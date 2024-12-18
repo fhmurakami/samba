@@ -14,7 +14,7 @@ class CollectionEquation < ApplicationRecord
         "#{ I18n.t("activerecord.models.collection") } #{ collection.name }",
         I18n.t(
           "collections.errors.equations_limit",
-          equations_limit: collection.equations_quantity,
+          count: collection.equations_quantity,
         )
       )
     end

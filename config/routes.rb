@@ -13,8 +13,9 @@ Rails.application.routes.draw do
     resources :answers
     resources :collections
     resources :equations
-    resources :groups
+    resources :groupings
     resources :participants, module: :user
+    resources :reports
 
     resources :equations, only: [] do
       resources :collections, only: [] do
@@ -25,9 +26,9 @@ Rails.application.routes.draw do
     end
 
     resources :participants, module: :user, only: [] do
-      resources :groups, only: [] do
+      resources :groupings, only: [] do
         member do
-          patch "remove", to: "/groups#remove_participant", as: :remove
+          patch "remove", to: "/groupings#remove_participant", as: :remove
         end
       end
     end

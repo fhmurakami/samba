@@ -9,8 +9,6 @@ class Round::FinishService
   end
 
   def call
-    # @current_round.update(completed_at: Time.current)
-
     # Check if all equations have been answered
     if collection_completed?
       finalize_round
@@ -33,6 +31,11 @@ class Round::FinishService
     )
 
     calculate_round_time
+    Report.new(
+      user_admin: current_admin,
+      collection: @collection,
+      grouping: @participant.grouping
+    )
   end
 
   def calculate_round_time

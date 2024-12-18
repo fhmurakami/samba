@@ -1,0 +1,56 @@
+<h3>
+  <%= grouping.name %>
+</h3>
+<div id="<%= dom_id grouping %>">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="5">
+          <strong>
+            <%= t("activerecord.models.user/participant").pluralize %>
+          </strong>
+        </th>
+      </tr>
+      <tr>
+        <th><%= t "helpers.label.participant.id" %></th>
+        <th><%= t "helpers.label.participant.full_name" %></th>
+        <th><%= t "helpers.label.participant.birth_date" %></th>
+        <th colspan="2"><%= t "helpers.actions" %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% grouping.participants.each do |participant| %>
+        <tr>
+          <td>
+            <%= participant.id %>
+          </td>
+          <td>
+            <%= "#{participant.first_name} #{participant.last_name}" %>
+          </td>
+          <td>
+            <%= participant.birth_date %>
+          </td>
+          <td>
+            <%= link_to t("participants.show"), participant, class: "text-xs" %>
+          </td>
+          <td>
+            <%=
+              button_to t("participants.remove_from_grouping"),
+              remove_participant_grouping_path(participant, grouping),
+              class: "btn btn-small crimson",
+              method: :patch,
+              data: { turbo_method: :patch, confirm: t("participants.remove_from_grouping?") }
+            %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th colspan="5">
+          <%= link_to t("participants.new"), new_participant_path(grouping_id: grouping.id), class: "btn btn-small text-s pumpkin" %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+</div>
