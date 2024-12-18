@@ -31,7 +31,9 @@ pt-BR:
     updated: "A etapa foi atualizada com sucesso."
     destroyed: "A etapa foi excluída com sucesso."
     errors:
-      equations_limit: "não pode ter mais do que %{equations_limit} equações"
+      equations_limit:
+        one: "não pode ter mais do que %{count} equação"
+        other: "não pode ter mais do que %{count} equações"
   equations:
     back: "Voltar para equações"
     delete: "Excluir equação"
