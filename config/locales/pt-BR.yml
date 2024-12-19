@@ -112,6 +112,7 @@ pt-BR:
       collection: "Etapa"
       equation: "Equação"
       grouping: "Grupo"
+      report: "Relatório"
       round: "Sessão"
       user/admin: "Admin"
       user/participant: "Participante"
@@ -256,6 +257,9 @@ pt-BR:
       wrong_length:
         one: não possui o tamanho esperado (%{count} caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
+      too_many_rounds:
+        one: "%{model} não pode ter mais que %{count} sessão, pois o Grupo %{grouping} possui apenas %{count} participante"
+        other: "%{model} não pode ter mais que %{count} sessões, pois o Grupo %{grouping} possui apenas %{count} participantes"
     template:
       body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:
