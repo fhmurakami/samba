@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :equations
     resources :groupings
     resources :participants, module: :user
-    resources :reports
+    resources :reports, only: [ :index, :show, :destroy ]
 
     resources :equations, only: [] do
       resources :collections, only: [] do

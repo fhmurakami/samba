@@ -42,6 +42,9 @@ end
 RSpec.configure do |config|
   config.include Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
+  config.include Devise::Test::IntegrationHelpers
+  config.include Devise::Test::IntegrationHelpers, type: :feature
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join("spec/fixtures")
