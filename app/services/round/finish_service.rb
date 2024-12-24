@@ -1,11 +1,12 @@
 class Round::FinishService
-  def initialize(current_round)
-    @current_round = current_round
-    @collection = @current_round.collection
-    @participant = @current_round.participant
+  def initialize(round, collection, participant, admin)
+    @current_round = round
+    @collection = collection
+    @participant = participant
+    @user_admin = admin
   end
-  def self.call(current_round)
-    new(current_round).call
+  def self.call(round:, collection:, participant:, admin:)
+    new(round, collection, participant, admin).call
   end
 
   def call
@@ -26,23 +27,20 @@ class Round::FinishService
   end
 
   def finalize_round
-    @current_round.update!(
-      completed_at: Time.current
-    )
+    @completed_at = Time.current
 
-    calculate_round_time
-    Report.new(
-      user_admin: current_admin,
-      collection: @collection,
-      grouping: @participant.grouping
+    @current_round.update!(
+      completed_at: @completed_at,
+      report: report,
+      round_time: calculate_round_time
     )
   end
 
   def calculate_round_time
     # Logic to calculate time spent on the entire round
     start_time = @current_round.started_at.to_f * 1000
-    end_time = Time.current.to_f * 1000
-    @current_round.round_time = (end_time - start_time).to_i
-    @current_round.save
+    end_time = @completed_at.to_f * 1000
+
+    (end_time - start_time).to_i
   end
 end

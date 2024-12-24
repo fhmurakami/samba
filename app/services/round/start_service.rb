@@ -18,10 +18,11 @@ class Round::StartService
 
   def start_round
     # Find or Create a participant collection round record
-    @round = Round.find_or_create_by!(
+    @round = Round.find_or_create_by(
       collection: @collection,
       participant: @participant,
-      completed_at: nil
+      completed_at: nil,
+      report: nil
     )
 
     if @round.started_at.nil?
