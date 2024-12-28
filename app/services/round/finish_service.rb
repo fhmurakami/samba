@@ -31,7 +31,6 @@ class Round::FinishService
 
     @current_round.update!(
       completed_at: @completed_at,
-      report: report,
       round_time: calculate_round_time
     )
   end

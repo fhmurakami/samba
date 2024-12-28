@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Round::FinishService, type: :service do
   let(:current_round) { create(:round, :unfinished) }
@@ -7,26 +7,21 @@ RSpec.describe Round::FinishService, type: :service do
   let(:participant) { create(:user_participant, user_admin: current_admin) }
   let(:completed_at) { Time.current }
   let(:finish_service) do
-    described_class.new(
-      round: current_round,
-      collection: collection,
-      participant: participant,
-      admin: current_admin
-    )
+    described_class.new(current_round, collection, participant, current_admin)
   end
 
-  describe '#call' do
-    context 'when collection is completed' do
+  describe "#call" do
+    context "when collection is completed" do
       before do
         allow(finish_service).to receive(:collection_completed?).and_return(true)
       end
 
-      it 'finalizes the round' do
+      it "finalizes the round" do
         expect(finish_service).to receive(:finalize_round)
         finish_service.call
       end
 
-      it 'updates completed_at field for current_round' do
+      it "updates completed_at field for current_round" do
         allow(Time).to receive(:current)
           .and_return(completed_at)
 
@@ -35,7 +30,7 @@ RSpec.describe Round::FinishService, type: :service do
         expect(current_round.completed_at).to be_within(0.1.seconds).of(completed_at)
       end
 
-      it 'calculates the time spent to finish the round' do
+      it "calculates the time spent to finish the round" do
         end_time = current_round.started_at + 5.minutes
         allow(Time).to receive(:current).and_return(end_time)
 
@@ -45,12 +40,12 @@ RSpec.describe Round::FinishService, type: :service do
       end
     end
 
-    context 'when collection is not completed' do
+    context "when collection is not completed" do
       before do
         allow(finish_service).to receive(:collection_completed?).and_return(false)
       end
 
-      it 'does not finalize the round' do
+      it "does not finalize the round" do
         expect(finish_service).not_to receive(:finalize_round)
         finish_service.call
       end
