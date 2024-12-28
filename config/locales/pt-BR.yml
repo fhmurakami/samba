@@ -2,7 +2,6 @@
 pt-BR:
   home:
     homepage: "Home"
-    new_round: "Nova sessão"
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
@@ -83,6 +82,7 @@ pt-BR:
     errors:
       not_found: "O relatório não foi encontrado!"
   rounds:
+    new: "Nova sessão"
     congrats: "Parabéns!"
     congrats_message: "Você respondeu todas as equações!"
   activerecord:
