@@ -5,7 +5,7 @@ class Round::SubmitAnswerService
     @collection = @current_round.collection
     @participant = @current_round.participant
     @equation_started_at = @current_round.equation_started_at
-    @current_equation = Equation.find(@current_round.current_equation_id)
+    @current_equation = Equation.find_by_id(@current_round.current_equation_id)
   end
 
   def self.call(current_round, answer_value)
