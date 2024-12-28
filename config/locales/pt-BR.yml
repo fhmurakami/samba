@@ -2,7 +2,6 @@
 pt-BR:
   home:
     homepage: "Home"
-    new_round: "Nova sessão"
     title: "S.A.M."
     subtitle: "Software de Avaliação Matemática"
     back: "Voltar para página inicial"
@@ -75,6 +74,7 @@ pt-BR:
     updated: "O participante foi atualizado com sucesso."
     destroyed: "O participante foi excluído com sucesso."
   rounds:
+    new: "Nova sessão"
     congrats: "Parabéns!"
     congrats_message: "Você respondeu todas as equações!"
   activerecord:

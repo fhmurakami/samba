@@ -31,7 +31,7 @@ class Round::NextEquationService
 
   # Returns an array of equations that have not been answered by the current participant yet.
   def unanswered_equations
-    @unanswered_equations ||= @collection.equations.select do |equation|
+    @unanswered_equations = @collection.equations.select do |equation|
       !equation.answers.exists?(participant: @participant, round: @current_round)
     end
   end

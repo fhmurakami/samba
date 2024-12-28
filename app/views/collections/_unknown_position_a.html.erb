@@ -1,4 +1,7 @@
-  <%= form_with url: submit_answer_path, method: :post do |form| %>
+  <%= form_with(
+    url: submit_answer_round_path(@current_round, locale: I18n.locale),
+    method: :post
+  ) do |form| %>
   <div class="row">
     <div class="field number">
       <%=
@@ -28,6 +31,10 @@
     <div class="hidden field">
       <%= form.label :participant_id %>
       <%= form.text_field :participant_id, value: @participant.id %>
+    </div>
+    <div class="hidden field">
+      <%= form.label :round_id %>
+      <%= form.text_field :round_id, value: @current_round.id %>
     </div>
   </div>
   <div class="answer actions mt-1">

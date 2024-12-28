@@ -3,10 +3,6 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /pt-BR|en/ do
     # Defines the root path route ("/")
     root "home#index"
-    get "new_round", to: "home#new_round"
-    get "collections/start_round", to: "collections#start_round", as: "start_round"
-    post "collections/submit_answer", to: "collections#submit_answer", as: "submit_answer"
-    get "collections/finish_round", to: "collections#finish_round", as: "finish_round"
 
     # Devise routes for User::Admin authentication
     devise_for :admins, class_name: "User::Admin"
@@ -28,8 +24,19 @@ Rails.application.routes.draw do
     resources :participants, module: :user, only: [] do
       resources :groupings, only: [] do
         member do
-          patch "remove", to: "/groupings#remove_participant", as: :remove
+          patch "remove", to: "groupings#remove_participant", as: :remove
         end
+      end
+    end
+
+    resources :rounds, param: :round_id, only: [ :new ] do
+      collection do
+        post "start"
+      end
+
+      member do
+        post "submit_answer"
+        get "finish"
       end
     end
   end
