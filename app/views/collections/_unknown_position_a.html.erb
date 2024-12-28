@@ -1,4 +1,7 @@
-  <%= form_with url: submit_answer_round_path(@current_round), method: :post do |form| %>
+  <%= form_with(
+    url: submit_answer_round_path(@current_round, locale: I18n.locale),
+    method: :post
+  ) do |form| %>
   <div class="row">
     <div class="field number">
       <%=

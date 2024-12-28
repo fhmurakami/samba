@@ -22,8 +22,6 @@ FactoryBot.define do
           ]
         )
       }
-
-      answers { create(:answer) }
     end
   end
 end
