@@ -6,8 +6,8 @@ RSpec.describe User::Participant, type: :model do
   it { is_expected.to have_db_column(:birth_date).of_type(:date) }
 
   it { is_expected.to belong_to :user_admin }
-  it { is_expected.to belong_to :grouping }
-  it { is_expected.to have_many :answers }
+  it { is_expected.to belong_to(:grouping).optional }
+  it { is_expected.to have_many(:answers).dependent(:destroy).with_foreign_key(:user_participant_id) }
 
   describe "when creating a new User::Participant" do
     it "is valid with valid attributes" do
