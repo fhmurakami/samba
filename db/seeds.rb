@@ -111,7 +111,7 @@ if Rails.env.development?
       operator: "*",
       position_b: 2,
       position_c: 4,
-      unknown_position: "a"
+      unknown_position: "b"
     },
     {
       user_admin_id: admins.second.id,
@@ -119,7 +119,7 @@ if Rails.env.development?
       operator: "-",
       position_b: 2,
       position_c: 0,
-      unknown_position: "a"
+      unknown_position: "c"
     },
     {
       user_admin_id: admins.second.id,
@@ -164,7 +164,7 @@ if Rails.env.development?
         participant: participants.third,
         collection_equation: collections_equations[i],
         round: rounds.first,
-        answer_value: equations[i][:"position_#{equations[i].unknown_position}"],
+        answer_value: equations[i + 1][:"position_#{equations[i + 1].unknown_position}"], # i + 1 to skip the first equation from the other admin
         correct_answer: true,
         time_spent: rand(10..30).seconds.in_milliseconds
       )
