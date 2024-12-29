@@ -112,6 +112,10 @@ li {
   margin-top: 1rem;
 }
 
+.pr-9 {
+  padding-right: 9rem;
+}
+
 .text-center {
   text-align: center;
 }
@@ -248,7 +252,8 @@ nav div.user {
 .buttons .collections,
 .buttons .equations,
 .buttons .groupings,
-.buttons .participants {
+.buttons .participants,
+.buttons .reports {
   width: 100%;
   gap: 2.5vmin;
 }
@@ -326,7 +331,8 @@ nav div.user {
 .collections,
 .equations,
 .groupings,
-.participants {
+.participants,
+.reports {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -363,7 +369,8 @@ nav div.user {
 
 #answers,
 #collections,
-#groupings {
+#groupings,
+#reports {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -427,7 +434,8 @@ nav div.user {
 .collections a,
 .equations a,
 .groupings a,
-.participants a {
+.participants a,
+.reports a {
   text-align: center;
   font-size: 1.5rem;
   margin: 2vmin auto;
@@ -525,6 +533,7 @@ a.forgot-password:hover {
 }
 
 .btn {
+  /* font-size: 1.2rem; */
   cursor: pointer;
   width: 100%;
   text-align: center;

@@ -1,0 +1,54 @@
+<div id="<%= dom_id report %>">
+  <table>
+    <thead>
+      <tr>
+        <th colspan="10">
+          <strong><%= report.grouping.name %></strong>
+        </th>
+      </tr>
+      <tr>
+        <th><strong><%= t("activerecord.models.collection") %></strong></th>
+        <th colspan="9" class="pr-9"><%= report.collection.name %></th>
+      </tr>
+    </thead>
+    <% report.rounds.each do |round| %>
+      <thead>
+        <tr>
+          <th><strong><%= t("activerecord.models.user/participant") %></strong></th>
+          <th colspan="9" class="pr-9"><%= round.participant.full_name %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th rowspan="<%= round.collection.equations.size + 1 %>">
+            <strong><%= t("activerecord.models.equation").pluralize %></strong>
+          </th>
+          <th><%= t("activerecord.attributes.equation.position_a") %></th>
+          <th><%= t("activerecord.attributes.equation.operator") %></th>
+          <th><%= t("activerecord.attributes.equation.position_b") %></th>
+          <th><%= t("activerecord.attributes.equation.position_c") %></th>
+          <th><%= t("activerecord.attributes.equation.unknown_position") %></th>
+          <th rowspan="<%= round.collection.equations.size + 1 %>">
+            <strong><%= t("activerecord.models.answer").pluralize %></strong>
+          </th>
+          <th><%= t("activerecord.attributes.answer.answer_value") %></th>
+          <th><%= t("activerecord.attributes.answer.correct_answer") %></th>
+          <th><%= t("activerecord.attributes.answer.time") %></th>
+        </tr>
+        <% round.answers.each do |answer| %>
+          <tr>
+            <td><%= answer.equation.position_a %></td>
+            <td><%= answer.equation.operator %></td>
+            <td><%= answer.equation.position_b %></td>
+            <td><%= answer.equation.position_c %></td>
+            <td><%= answer.equation.unknown_position %></td>
+            <td><%= answer.answer_value %></td>
+            <td><%= answer.correct_answer ? "✔️" : "❌" %></td>
+            <td><%= answer.formatted_time %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+</div>
