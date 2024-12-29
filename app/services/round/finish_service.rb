@@ -39,6 +39,7 @@ class Round::FinishService
       completed_at: @completed_at,
       round_time: calculate_round_time,
       report: report
+
     )
   end
 
