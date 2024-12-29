@@ -1,6 +1,6 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  scope "(:locale)", locale: /pt-BR|en/ do
+  scope "(:locale)", locale: /pt-BR|en/, defaults: { locale: "pt-BR" } do
     # Defines the root path route ("/")
     root "home#index"
 
@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     resources :equations
     resources :groupings
     resources :participants, module: :user
-    resources :reports
+    resources :reports, only: [ :index, :show, :destroy ]
 
     resources :equations, only: [] do
       resources :collections, only: [] do

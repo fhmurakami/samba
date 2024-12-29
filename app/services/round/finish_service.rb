@@ -29,9 +29,17 @@ class Round::FinishService
   def finalize_round
     @completed_at = Time.current
 
+    report = Report::CreateService.call(
+      user_admin: @user_admin,
+      collection: @collection,
+      grouping: @participant.grouping,
+    )
+
     @current_round.update!(
       completed_at: @completed_at,
-      round_time: calculate_round_time
+      round_time: calculate_round_time,
+      report: report
+
     )
   end
 

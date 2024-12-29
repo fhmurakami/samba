@@ -4,6 +4,7 @@ FactoryBot.define do
     association :participant, factory: :user_participant
     started_at { "2024-12-06 14:00:00" }
     completed_at { "2024-12-06 14:02:50" }
+    report
 
     trait :unfinished do
       started_at { Time.current }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_18_195846) do
+ActiveRecord::Schema[7.2].define(version: 2024_12_21_023018) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -87,7 +87,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_18_195846) do
     t.integer "round_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "report_id", null: false
+    t.bigint "report_id"
     t.index ["collection_id"], name: "index_rounds_on_collection_id"
     t.index ["current_equation_id"], name: "index_rounds_on_current_equation_id"
     t.index ["report_id"], name: "index_rounds_on_report_id"

@@ -14,9 +14,9 @@ pt-BR:
     register: "Cadastrar nova resposta"
     show: "Ver resposta"
     show_all: "Ver todas as respostas"
-    created: "A resposta foi criada com sucesso."
-    updated: "A resposta foi atualizada com sucesso."
-    destroyed: "A resposta foi excluída com sucesso."
+    created: "A resposta foi criada com sucesso!"
+    updated: "A resposta foi atualizada com sucesso!"
+    destroyed: "A resposta foi excluída com sucesso!"
   collections:
     back: "Voltar para etapas"
     delete: "Excluir etapa"
@@ -26,9 +26,9 @@ pt-BR:
     register: "Cadastrar nova etapa"
     show: "Ver etapa"
     show_all: "Ver todas as etapas"
-    created: "A etapa foi criada com sucesso."
-    updated: "A etapa foi atualizada com sucesso."
-    destroyed: "A etapa foi excluída com sucesso."
+    created: "A etapa foi criada com sucesso!"
+    updated: "A etapa foi atualizada com sucesso!"
+    destroyed: "A etapa foi excluída com sucesso!"
     errors:
       equations_limit:
         one: "não pode ter mais do que %{count} equação"
@@ -44,9 +44,9 @@ pt-BR:
     register: "Cadastrar equação"
     show: "Ver equação"
     show_all: "Ver todas as equações"
-    created: "A equação foi criada com sucesso."
-    updated: "A equação foi atualizada com sucesso."
-    destroyed: "A equação foi excluída com sucesso."
+    created: "A equação foi criada com sucesso!"
+    updated: "A equação foi atualizada com sucesso!"
+    destroyed: "A equação foi excluída com sucesso!"
   groupings:
     back: "Voltar para grupos"
     delete: "Excluir grupo"
@@ -56,9 +56,9 @@ pt-BR:
     select: "Selecionar grupo"
     show: "Ver grupo"
     show_all: "Ver todos os grupos"
-    created: "O grupo foi criado com sucesso."
-    updated: "O grupo foi atualizado com sucesso."
-    destroyed: "O grupo foi excluído com sucesso."
+    created: "O grupo foi criado com sucesso!"
+    updated: "O grupo foi atualizado com sucesso!"
+    destroyed: "O grupo foi excluído com sucesso!"
   participants:
     back: "Voltar para participantes"
     delete: "Excluir participante"
@@ -70,9 +70,17 @@ pt-BR:
     register: "Cadastrar participante"
     show: "Ver participante"
     show_all: "Ver todos os participantes"
-    created: "O participante foi criado com sucesso."
-    updated: "O participante foi atualizado com sucesso."
-    destroyed: "O participante foi excluído com sucesso."
+    created: "O participante foi criado com sucesso!"
+    updated: "O participante foi atualizado com sucesso!"
+    destroyed: "O participante foi excluído com sucesso!"
+  reports:
+    back: "Voltar para relatórios"
+    delete: "Excluir relatório"
+    show: "Ver relatório"
+    show_all: "Ver todos os relatórios"
+    destroyed: "O relatório foi excluído com sucesso!"
+    errors:
+      not_found: "O relatório não foi encontrado!"
   rounds:
     new: "Nova sessão"
     congrats: "Parabéns!"
@@ -112,6 +120,7 @@ pt-BR:
       collection: "Etapa"
       equation: "Equação"
       grouping: "Grupo"
+      report: "Relatório"
       round: "Sessão"
       user/admin: "Admin"
       user/participant: "Participante"
@@ -256,6 +265,9 @@ pt-BR:
       wrong_length:
         one: não possui o tamanho esperado (%{count} caracter)
         other: não possui o tamanho esperado (%{count} caracteres)
+      too_many_rounds:
+        one: "%{model} não pode ter mais que %{count} sessão, pois o Grupo %{grouping} possui apenas %{count} participante"
+        other: "%{model} não pode ter mais que %{count} sessões, pois o Grupo %{grouping} possui apenas %{count} participantes"
     template:
       body: "Por favor, verifique o(s) seguinte(s) campo(s):"
       header:

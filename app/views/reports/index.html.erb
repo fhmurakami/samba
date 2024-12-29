@@ -1,0 +1,18 @@
+<% content_for :title, t("activerecord.models.report").pluralize %>
+<main class="background">
+  <section class="blur">
+    <%= render "shared/header" %>
+    <h2><%= t("activerecord.models.report").pluralize %></h2>
+    <div class="reports">
+      <div id="reports">
+        <% @reports.each do |report| %>
+          <div class="card report">
+            <%= render report %>
+            <%= link_to t("reports.show"), report %>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to t("home.back"), root_path, class: "btn mustard btn-text-black" %>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,12 @@
+<main class="background">
+  <section class="blur">
+    <%= render "shared/header" %>
+    <div class="panel report">
+      <%= render @report %>
+      <div class="actions">
+        <%= link_to t("reports.back"), reports_path %>
+        <%= button_to t("reports.delete"), @report, class: "btn crimson", method: :delete, data: { turbo_method: :delete } %>
+      </div>
+    </div>
+  </section>
+</main>
