@@ -16,13 +16,26 @@ RSpec.describe "/collections", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Collection. As you add validations to Collection, be sure to
   # adjust the attributes here as well.
+  let(:current_admin) { create(:user_admin) }
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      name: "My Collection",
+      equations_quantity: 2,
+      user_admin_id: current_admin.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      name: nil,  # Invalid because name is required
+      equations_quantity: -1,  # Invalid because equations_quantity should be a positive integer
+      user_admin_id: nil  # Invalid because user_admin_id is required
+    }
   }
+
+  before(:each) do
+    sign_in current_admin
+  end
 
   describe "GET /index" do
     it "renders a successful response" do
@@ -86,14 +99,20 @@ RSpec.describe "/collections", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          name: "Sample Collection",
+          equations_quantity: 5,
+          user_admin: current_admin
+        }
       }
 
       it "updates the requested collection" do
         collection = Collection.create! valid_attributes
         patch collection_url(collection), params: { collection: new_attributes }
         collection.reload
-        skip("Add assertions for updated state")
+        expect(collection.name).to eq("Sample Collection")
+        expect(collection.equations_quantity).to eq(5)
+        expect(collection.user_admin).to eq(new_attributes[:user_admin])
       end
 
       it "redirects to the collection" do
