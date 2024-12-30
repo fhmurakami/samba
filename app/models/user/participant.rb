@@ -4,7 +4,7 @@ module User
 
     belongs_to :user_admin, class_name: "User::Admin"
     belongs_to :grouping, optional: true
-    has_many :answers, dependent: :destroy
+    has_many :answers, dependent: :destroy, foreign_key: :user_participant_id
     has_many :rounds
     has_many :reports, through: :rounds
 
