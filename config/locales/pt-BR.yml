@@ -5,18 +5,6 @@ pt-BR:
     title: "S.A.M.Ba"
     subtitle: "Sistema para Avaliação de Matemática Básica"
     back: "Voltar para página inicial"
-  answers:
-    back: "Voltar para respostas"
-    delete: "Excluir resposta"
-    edit: "Editar resposta"
-    editing: "Editando resposta"
-    new: "Nova resposta"
-    register: "Cadastrar nova resposta"
-    show: "Ver resposta"
-    show_all: "Ver todas as respostas"
-    created: "A resposta foi criada com sucesso!"
-    updated: "A resposta foi atualizada com sucesso!"
-    destroyed: "A resposta foi excluída com sucesso!"
   collections:
     back: "Voltar para etapas"
     delete: "Excluir etapa"
@@ -38,8 +26,8 @@ pt-BR:
     delete: "Excluir equação"
     edit: "Editar equação"
     editing: "Editando equação"
-    remove: "Remover do etapa"
-    remove?: "Realmente deseja remover a equação do etapa?"
+    remove: "Remover da etapa"
+    remove?: "Realmente deseja remover a equação da etapa?"
     new: "Nova equação"
     register: "Cadastrar equação"
     show: "Ver equação"
@@ -253,6 +241,7 @@ pt-BR:
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
       other_than: deve ser diferente de %{count}
+      password_too_long: é muito longa
       present: deve ficar em branco
       required: é obrigatório(a)
       taken: já está em uso

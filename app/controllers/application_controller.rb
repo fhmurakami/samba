@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   around_action :switch_locale
+  # before_action :switch_locale
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
 
@@ -11,8 +12,14 @@ class ApplicationController < ActionController::Base
   end
 
   def switch_locale(&action)
-    locale = params[:locale] || I18n.default_locale
-    I18n.with_locale(locale, &action)
+    if params[:locale] == "en" && I18n.locale == :"pt-BR"
+      I18n.locale = :en
+    elsif params[:locale] == "pt-BR" && I18n.locale == :en
+      I18n.locale = :"pt-BR"
+    else
+      I18n.locale = params[:locale] || I18n.default_locale
+    end
+    I18n.with_locale(I18n.locale, &action)
   end
 
   def default_url_options
