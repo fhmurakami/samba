@@ -22,10 +22,10 @@
       <tbody>
         <tr>
           <td class="id-cell">
-            <%= participant.grouping.id %>
+            <%= participant.grouping&.id %>
           </td>
           <td class="name-cell">
-            <%= participant.grouping.name %>
+            <%= participant.grouping&.name %>
           </td>
           <td class="link-cell">
             <%= link_to t("groupings.show"), participant.grouping, class: "text-xs" %>

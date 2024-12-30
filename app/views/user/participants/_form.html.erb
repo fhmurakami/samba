@@ -26,13 +26,15 @@
     <%= form.label :birth_date, style: "display: block" %>
     <%= form.date_field :birth_date %>
   </div>
-  <div class="field">
-    <%= form.label :grouping_id %>
-    <%=
+  <% if current_admin.groupings %>
+    <div class="field">
+      <%= form.label :grouping_id %>
+      <%=
       form.select :grouping_id,
       options_from_collection_for_select(current_admin.groupings, :id, :name)
     %>
-  </div>
+    </div>
+  <% end %>
   <div class="field">
     <%= form.label :user_admin_id, style: "display: none" %>
     <%= form.text_field :user_admin_id, value: current_admin.id, style: "display: none" %>
