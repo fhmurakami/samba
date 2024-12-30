@@ -16,12 +16,32 @@ RSpec.describe "/equations", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Equation. As you add validations to Equation, be sure to
   # adjust the attributes here as well.
+  let(:current_admin) { create(:user_admin) }
+
+  before(:each) do
+    sign_in current_admin
+  end
+
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {
+      position_a: 1,
+      position_b: 2,
+      position_c: 3,
+      operator: '+',
+      unknown_position: 'a',
+      user_admin_id: current_admin.id
+    }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {
+      position_a: nil,  # Invalid because position_a is required
+      position_b: nil,  # Invalid because position_b is required
+      position_c: nil,  # Invalid because position_c is required
+      operator: nil,    # Invalid because operator is required
+      unknown_position: nil,  # Invalid because unknown_position is required
+      user_admin_id: nil  # Invalid because user_admin_id is required
+    }
   }
 
   describe "GET /index" do
@@ -86,14 +106,26 @@ RSpec.describe "/equations", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {
+          position_a: 3,
+          position_b: 2,
+          position_c: 5,
+          operator: "+",
+          unknown_position: "b",
+          user_admin_id: current_admin.id
+        }
       }
 
       it "updates the requested equation" do
         equation = Equation.create! valid_attributes
         patch equation_url(equation), params: { equation: new_attributes }
         equation.reload
-        skip("Add assertions for updated state")
+        expect(equation.position_a).to eq(new_attributes[:position_a])
+        expect(equation.position_b).to eq(new_attributes[:position_b])
+        expect(equation.position_c).to eq(new_attributes[:position_c])
+        expect(equation.operator).to eq(new_attributes[:operator])
+        expect(equation.unknown_position).to eq(new_attributes[:unknown_position])
+        expect(equation.user_admin_id).to eq(new_attributes[:user_admin_id])
       end
 
       it "redirects to the equation" do
